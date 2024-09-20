@@ -1,0 +1,905 @@
+/* Reset CSS básico para asegurar consistencia entre navegadores */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Aseguramos que el fondo del html y body sea negro */
+html, body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #000000; /* Fondo negro para toda la página */
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden; /* Para evitar desbordamiento lateral */
+}
+
+/* Asegura que todo el contenido se ajuste a la pantalla y respete las capas superiores */
+body {
+    font-family: 'Poppins', sans-serif; /* Fuente Poppins de Google Fonts */
+    position: relative; /* Asegura que las capas se mantengan por encima */
+    z-index: -2; /* Fondo de la página estará detrás de todo */
+}
+
+/* Ajustar estilos en párrafos, encabezados y textos si es necesario */
+h1, h2, h3, p, button {
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Capa 2: Ajustes generales para contenedores */
+.container {
+    max-width: 100%;
+    padding: 0 20px; /* Añade padding para evitar que el contenido toque los bordes */
+    margin: 0 auto; /* Asegura que el contenido esté centrado */
+}
+
+/* Establece un ancho máximo para los contenedores */
+.content-layer, .audio-player-card, .final-card, .book-carousel-section, .video-section, .spotify-playlist-section, .love-clock-section {
+    width: 100%;
+    max-width: 100%; /* Asegura que el contenido ocupe todo el ancho disponible */
+    margin: 0 auto;
+    padding: 10px 20px;
+    box-sizing: border-box; /* Incluye el padding y borde en el tamaño del contenedor */
+}
+
+/* Ajustes adicionales para cartas y secciones */
+.letters, .letter {
+    width: 100%; /* Cartas ocuparán todo el ancho de la pantalla en móviles */
+    max-width: 100%;
+}
+
+
+
+/* Ajuste de botones y modales */
+button, .modal {
+    max-width: 100%;
+    margin: 0 auto; /* Centrar el botón y modal */
+}
+
+/* Para pantallas más pequeñas, ajustamos márgenes y fuentes */
+@media only screen and (max-width: 480px) {
+    h1, h2, p, button {
+        font-size: 0.9rem; /* Tamaño de texto más pequeño para dispositivos pequeños */
+    }
+    
+    .container, .section, .modal-content {
+        padding: 0 10px; /* Ajusta padding para pantallas más pequeñas */
+    }
+
+    .book-photo {
+        max-width: 100%; /* Imagenes se ajustan en pantallas pequeñas */
+    }
+    
+    /* Ajustes para la navegación del carrusel */
+    .prev-button, .next-button {
+        font-size: 1.5rem;
+        padding: 5px;
+    }
+}
+
+/* Estilos para el preloader */
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000; /* Fondo oscuro mientras se carga */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Por encima de todo */
+}
+
+.loader {
+    border: 8px solid #f3f3f3; /* Color del borde externo */
+    border-top: 8px solid #3498db; /* Color del borde giratorio */
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite; /* Animación de giro */
+}
+
+/* Animación del preloader */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
+/* Capa de fondo que contendrá el video */
+.background-layer {
+    position: fixed; /* El fondo permanece fijo mientras se desplaza el contenido */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* Evita que el video se desborde */
+    z-index: -1; /* Asegura que el video quede detrás de otros elementos */
+}
+
+/* El video de fondo */
+.background-video {
+    position: absolute; /* Hace que el video ocupe todo el contenedor */
+    top: 50%; /* Centra el video verticalmente */
+    left: 50%; /* Centra el video horizontalmente */
+    min-width: 100%; /* Se asegura que el video cubra todo el ancho */
+    min-height: 100%; /* Se asegura que el video cubra toda la altura */
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%); /* Centrado exacto del video */
+    opacity: 10; /* Aplica opacidad al video para efecto de transparencia */
+    object-fit: cover; /* Asegura que el video mantenga sus proporciones */
+}
+
+/* Capa de contenido que se coloca sobre el fondo */
+.content-layer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Asegura que el contenido ocupe toda la pantalla */
+    text-align: center;
+    padding: 20px;
+    z-index: 1;
+    opacity: 5; /* Inicia con opacidad 0 para la animación */
+    transform: translateY(50px); /* Comienza desplazado para el efecto de entrada */
+    transition: opacity 1.5s ease-out, transform 1.5s ease-out; /* Transiciones para la entrada */
+}
+
+/* Estilos para el título */
+h1 {
+    font-family: 'Arial', sans-serif;
+    font-size: 3rem;
+    color: white;
+}
+
+/* Estilos para el párrafo */
+p {
+    font-family: 'Arial', sans-serif;
+    font-size: 1.2rem;
+    color: #f1f1f1;
+}
+
+/* Responsividad para dispositivos medianos */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.5rem; /* Ajusta el tamaño del título */
+    }
+    p {
+        font-size: 1rem; /* Ajusta el tamaño del texto */
+    }
+}
+
+/* Responsividad para dispositivos pequeños */
+@media (max-width: 480px) {
+    h1 {
+        font-size: 2rem; /* Ajusta aún más el tamaño del título */
+    }
+    p {
+        font-size: 0.9rem; /* Ajusta aún más el tamaño del texto */
+    }
+}
+
+
+/* Capa 2: Encabezado, cuerpo y pie de página */
+
+/* Estilo para la tarjeta del reproductor de audio (estilo Spotify) */
+.audio-player-card {
+    background-color: rgba(0, 0, 0, 0.8); /* Fondo oscuro opaco */
+    padding: 15px;
+    border-radius: 15px; /* Bordes redondeados */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Sombra para profundidad */
+    width: 100%;
+    max-width: 500px;
+    margin: 20px auto; /* Centramos la tarjeta */
+    color: white;
+    display: flex;
+    flex-direction: column; /* Organiza las secciones en columnas */
+}
+
+/* Sección del título dentro de la tarjeta */
+.audio-player-title {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+/* Estilo del título dentro de la tarjeta */
+.audio-player-title h3 {
+    font-size: 1.2rem;
+    margin: 0;
+    color: #fff;
+}
+
+/* Sección del logo y reproductor dentro de la tarjeta */
+.audio-player-body {
+    display: flex;
+    align-items: center;
+}
+
+/* Estilo para la miniatura del logo de la canción */
+.song-logo {
+    width: 60px;
+    height: 60px;
+    border-radius: 10px;
+    margin-right: 20px; /* Separación entre logo y reproductor */
+    object-fit: cover; /* Mantener las proporciones */
+}
+
+/* Contenedor del reproductor de audio */
+.audio-player-container {
+    flex-grow: 1;
+}
+
+/* Estilos para el reproductor de audio */
+#audioPlayer {
+    width: 100%;
+    height: 40px; /* Alto del reproductor */
+    background-color: rgba(0, 0, 0, 0.6); /* Fondo oscuro */
+    border-radius: 15px;
+    outline: none;
+}
+
+/* Personalización de los controles del reproductor */
+#audioPlayer::-webkit-media-controls-panel {
+    background-color: rgba(124, 124, 124, 0.6); /* Fondo oscuro para el panel */
+    border-radius: 15px;
+}
+
+/* Cambiamos el color de los botones a gris oscuro */
+#audioPlayer::-webkit-media-controls-play-button,
+#audioPlayer::-webkit-media-controls-pause-button,
+#audioPlayer::-webkit-media-controls-mute-button {
+    filter: invert(60%); /* Cambia los botones a un gris oscuro */
+}
+
+/* Estilo para el selector de canciones */
+.song-selector {
+    margin-top: 10px;
+    padding: 5px;
+    font-size: 1rem;
+    border-radius: 5px;
+    background-color: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+}
+
+
+
+/* Capa 2: Cuerpo*/
+
+
+.container {
+    position: relative;
+    text-align: center;
+    color: white;
+    z-index: 2;
+    padding: 0 5%; /* Añadir padding para márgenes en pantallas pequeñas */
+}
+
+h1 {
+    font-size: 4rem;
+    margin-top: 20px; /* Reducido de 100px a 20px */
+    margin-bottom: 20px; /* Reducido el margen inferior para ahorrar espacio */
+    animation: fadeIn 2s ease-in-out;
+}
+
+
+h2 {
+    font-size: 3rem;
+    margin-top: 30px;
+    animation: fadeIn 3s ease-in-out;
+}
+
+p {
+    font-size: 1.5rem;
+    margin: 20px auto;
+    width: 100%;
+    max-width: 800px; /* Limitar el ancho máximo para que el texto no se extienda demasiado */
+    animation: fadeIn 4s ease-in-out;
+}
+
+.intro-card {
+    background-color: rgba(0, 0, 0, 0.6); /* Fondo oscuro y opaco */
+    padding: 20px;
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Sombra para darle profundidad */
+    margin: 50px auto; /* Centrado y espaciado superior e inferior */
+    max-width: 800px; /* Ancho máximo similar a otras tarjetas */
+    text-align: center; /* Centramos el texto */
+    color: white; /* Texto blanco para buena legibilidad */
+}
+
+.intro {
+    font-size: 1.5rem; /* Tamaño del texto similar a las otras secciones */
+    line-height: 1.8; /* Para hacer el texto más legible */
+    margin: 0; /* Sin márgenes adicionales */
+}
+
+
+/* Estilos de las cartas */
+.letters {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap; /* Asegura que las cartas se adapten en pantallas pequeñas */
+    margin-top: 50px;
+}
+
+.letter {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    width: 30%;
+    font-size: 1.2rem;
+    animation: slideIn 3s ease-in-out;
+    margin: 10px; /* Espaciado entre cartas */
+}
+
+/* Contenedor de las imágenes de las cartas */
+.letter-image-container {
+    margin-top: 15px; /* Espacio entre el texto y la imagen */
+    text-align: center; /* Centrar las imágenes */
+}
+
+/* Estilo de las imágenes en las cartas */
+.letter-image {
+    width: 100%;
+    max-width: 200px; /* Limita el tamaño máximo de la imagen */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para darle profundidad */
+}
+
+
+.heart-image {
+    width: 150px;
+    animation: heartbeat 2s infinite;
+}
+
+button {
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    margin-top: 40px;
+    background-color: #ff69b4;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background-color: #ff1493;
+    transform: scale(1.1);
+}
+
+.space-image {
+    width: 80%;
+    margin-top: 50px;
+    animation: fadeIn 3s ease-in-out;
+}
+
+/* Estrellas y planetas animados */
+.stars, .twinkling, .planets {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    pointer-events: none;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { transform: translateY(100px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
+@keyframes moveStars {
+    from { background-position: 0 0; }
+    to { background-position: -10000px 5000px; }
+}
+
+@keyframes moveTwinkling {
+    from { background-position: 0 0; }
+    to { background-position: -10000px 5000px; }
+}
+
+@keyframes movePlanets {
+    from { background-position: 0 0; }
+    to { background-position: -5000px 2500px; }
+}
+
+/* Media Queries para pantallas más pequeñas */
+@media only screen and (max-width: 1200px) {
+    h1 {
+        font-size: 3rem;
+    }
+    
+    h2 {
+        font-size: 2.5rem;
+    }
+
+    .letter {
+        width: 45%; /* Ajusta el ancho de las cartas en tablets */
+    }
+    
+    .space-image {
+        width: 90%;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    h1 {
+        font-size: 2.5rem;
+    }
+    
+    h2 {
+        font-size: 2rem;
+    }
+    
+    p {
+        font-size: 1.2rem;
+    }
+    
+    .letter {
+        width: 90%; /* Las cartas se muestran como bloques completos en pantallas pequeñas */
+    }
+    
+    .heart-image {
+        width: 100px; /* Imagen del corazón más pequeña */
+    }
+    
+    button {
+        font-size: 1rem;
+        padding: 10px 20px;
+    }
+
+    .space-image {
+        width: 95%;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    h1 {
+        font-size: 2rem;
+    }
+    
+    h2 {
+        font-size: 1.8rem;
+    }
+
+    p {
+        font-size: 1rem;
+    }
+    
+    .letter {
+        width: 100%; /* Cartas a pantalla completa en móviles */
+        font-size: 1rem;
+    }
+
+    button {
+        font-size: 0.9rem;
+        padding: 8px 16px;
+    }
+
+    .heart-image {
+        width: 80px; /* Imagen del corazón aún más pequeña en móviles */
+    }
+}
+
+/* Estilos del modal */
+.modal {
+    display: none; /* Oculto inicialmente */
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #000000;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    position: relative;
+    max-width: 600px;
+    width: 90%;
+    margin: auto;
+    color: #ffffff;
+}
+
+.modal-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.modal-content p {
+    font-size: 1.3rem;
+    line-height: 1.8;
+    margin-bottom: 30px;
+    opacity: 0;
+    animation: fadeInText 3s forwards; /* El texto se mostrará en 2 segundos */
+}
+
+.modal-content .heart-animation {
+    width: 150px;
+    margin-top: 20px;
+    opacity: 0;
+    animation: fadeInHeart 2s forwards, heartbeat 2s infinite; /* Primero aparecerá, luego comenzará a latir */
+    animation-delay: 1s; /* Aparece después del texto */
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #ff1493;
+}
+
+/* Animación de desvanecimiento del texto */
+@keyframes fadeInText {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Animación de desvanecimiento del corazón */
+@keyframes fadeInHeart {
+    from { opacity: 0; transform: scale(0.8); } /* Comienza más pequeño */
+    to { opacity: 1; transform: scale(1); } /* Aparece a tamaño normal */
+}
+
+.banner-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.banner-image {
+    width: 100%;
+    max-width: 1200px; /* Limitar el tamaño máximo para mantener la calidad */
+    height: auto; /* Mantener las proporciones de la imagen */
+}
+
+/* Para pantallas medianas */
+@media only screen and (max-width: 768px) {
+    .banner-image {
+        max-width: 90%; /* Ajusta la anchura para pantallas medianas */
+    }
+}
+
+/* Para pantallas pequeñas */
+@media only screen and (max-width: 480px) {
+    .banner-image {
+        max-width: 100%; /* La imagen ocupa todo el ancho de la pantalla */
+    }
+}
+
+/* Sección del carrusel tipo libro */
+.book-carousel-section {
+    background-color: rgba(0, 0, 0, 0.6); /* Fondo opaco simulando recubrimiento de un libro */
+    padding: 40px;
+    border-radius: 15px;
+    margin: 40px auto;
+    max-width: 800px;
+    text-align: center;
+    color: white;
+}
+
+.book-carousel-section h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+/* Estilos para el carrusel */
+.book-carousel {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 300px; /* Altura de las páginas */
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo de las páginas */
+    border-radius: 10px;
+}
+
+/* Flechas de navegación */
+.prev-button, .next-button {
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+    color: rgba(255, 255, 255, 0.312);
+    font-size: 2rem;
+    padding: 10px;
+    cursor: pointer;
+    position: absolute;
+    top: 30%;
+    transform: translateY(-50%);
+    z-index: 10;
+}
+
+.prev-button {
+    left: 10px;
+}
+
+.next-button {
+    right: 10px;
+}
+
+/* Contenedor de las páginas */
+.book-pages {
+    display: flex;
+    transition: transform 0.5s ease-in-out; /* Animación de paso de página */
+    width: 300%; /* El ancho es 3 veces la pantalla para las 3 páginas */
+}
+
+/* Cada página del libro */
+.book-page {
+    min-width: 100%; /* Cada página ocupa el 100% del contenedor visible */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Texto en la página */
+.book-text {
+    width: 45%; /* Texto ocupa el 45% de la página */
+    color: #fff;
+    font-size: 1.2rem;
+}
+
+/* Imagen en la página */
+.book-image {
+    width: 45%; /* Imagen ocupa el 45% de la página */
+}
+
+.book-photo {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+
+/* Nueva sección del video */
+.video-section {
+    background-color: rgba(0, 0, 0, 0.6); /* Fondo oscuro opaco */
+    padding: 40px;
+    border-radius: 15px;
+    margin: 40px auto;
+    max-width: 800px;
+    text-align: center;
+    color: white;
+}
+
+/* Estilo del título en la sección del video */
+.video-section h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+/* Contenedor del video */
+.video-container {
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.8); /* Fondo oscuro para el marco del video */
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Sombra para dar profundidad */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Estilo del video */
+.styled-video {
+    width: 100%;
+    max-width: 700px; /* Tamaño máximo del video */
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.6); /* Fondo del reproductor */
+    outline: none;
+}
+
+/* Personalización de los controles del video */
+.styled-video::-webkit-media-controls-panel {
+    background-color: rgba(0, 0, 0, 0.8); /* Fondo oscuro para los controles */
+    border-radius: 10px;
+}
+
+/* Cambiar el color de los botones a tonos grises oscuros */
+.styled-video::-webkit-media-controls-play-button,
+.styled-video::-webkit-media-controls-fullscreen-button,
+.styled-video::-webkit-media-controls-mute-button,
+.styled-video::-webkit-media-controls-timeline {
+    filter: invert(60%); /* Cambia los botones a un gris oscuro */
+}
+
+/* Responsividad para pantallas pequeñas */
+@media only screen and (max-width: 480px) {
+    .styled-video {
+        max-width: 100%; /* El video se ajustará completamente en pantallas pequeñas */
+    }
+}
+
+
+/* Nueva sección de Spotify */
+.spotify-playlist-section {
+    background-color: rgba(0, 0, 0, 0.6); /* Fondo oscuro opaco */
+    padding: 40px;
+    border-radius: 15px;
+    margin: 40px auto;
+    max-width: 800px;
+    text-align: center;
+    color: white;
+}
+
+/* Título de la sección de Spotify */
+.spotify-playlist-section h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+/* Contenedor del iframe de Spotify */
+.spotify-embed-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 352px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Sombra para darle profundidad */
+    overflow: hidden;
+}
+
+
+
+/* Estilos para la sección del reloj de amor */
+.love-clock-section {
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro opaco */
+    padding: 40px;
+    border-radius: 15px;
+    margin: 40px auto;
+    max-width: 500px;
+    text-align: center;
+    color: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4); /* Sombra para dar profundidad */
+    background-image: url('../content/img/stars_background.png'); /* Fondo de estrellas */
+}
+
+.love-clock-section h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+/* Contenedor del reloj y mensaje */
+.love-clock-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* Estilo del reloj digital */
+.love-clock {
+    font-size: 2.5rem;
+    color: #ffdd99; /* Color dorado claro para el reloj */
+    text-shadow: 0 0 10px #fff, 0 0 20px #ffdd99, 0 0 30px #ffdd99;
+    transition: opacity 0.5s ease-in-out; /* Transición suave */
+}
+
+/* Estilo del mensaje de amor */
+.love-message {
+    font-size: 1.5rem;
+    color: #ffd1dc; /* Color rosado */
+    text-shadow: 0 0 10px #fff, 0 0 20px #ffd1dc, 0 0 30px #ffd1dc;
+    transition: opacity 0.5s ease-in-out; /* Transición suave */
+}
+
+/* Estilo del botón de pausa */
+.clock-control {
+    background-color: #ff69b4;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.clock-control:hover {
+    background-color: #ff1493;
+}
+
+/* Efecto de fade-in para el reloj y mensaje */
+.fade-in {
+    opacity: 0;
+    animation: fadeIn 2s forwards;
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+
+/* Estilos para la tarjeta de la sección final */
+.final-card {
+    background-color: rgba(0, 0, 0, 0.6); /* Fondo oscuro */
+    padding: 40px;
+    border-radius: 15px;
+    margin: 40px auto;
+    max-width: 800px;
+    text-align: center;
+    color: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Sombra para dar profundidad */
+}
+
+.final-card-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Estilo del texto en la tarjeta final */
+.final-card h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+.final-card p {
+    font-size: 1.5rem;
+    margin: 20px auto;
+    width: 100%;
+    max-width: 800px;
+    line-height: 1.8;
+    color: #f1f1f1;
+}
+
+/* Estilo para la imagen dentro de la tarjeta */
+.image-container {
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.space-image {
+    width: 100%;
+    max-width: 600px; /* Ajusta el tamaño máximo de la imagen */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Sombra para dar profundidad */
+    object-fit: cover;
+}
+
