@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Para mi estrellita. 💫💗</title>
+
+    <!-- Metadatos para mejorar SEO y compartir en redes sociales -->
+    <meta name="description" content="Una página especial hecha con amor para mi estrellita.">
+    <meta name="keywords" content="amor, página web, estrellita, diseño web, especial">
+    <meta name="author" content="Antony Salcedo">
+    <meta property="og:title" content="Para mi estrellita. 💫💗">
+    <meta property="og:description" content="Una página especial hecha con amor.">
+    <meta property="og:image" content="../content/img/Mi_Estrellita.jpg">
+    
+    <!-- Favicon para la página -->
+    <link type="image/x-icon" href="../content/img/Mi_Estrellita.ico" rel="icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Enlace a la hoja de estilos CSS -->
+    <link href="../css/styles.css" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Preloader: se mostrará mientras se carga el video -->
+    <div id="preloader">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Capa 1: Fondo con video y respaldo de imagen -->
+    <div class="background-layer">
+        <video class="background-video" autoplay muted loop playsinline preload="auto">
+            <!-- Fuente del video optimizado en formato MP4 -->
+            <source src="../content/vdo/Fondo_Definitivo.mp4" type="video/mp4">
+            <!-- Imagen de respaldo en caso de que el video no cargue -->
+            <img class="fallback-image" src="../content/img/fondo_respaldo.jpg" alt="Fondo de la página" loading="lazy">
+            <!-- Mensaje si el navegador no soporta el formato de video -->
+            Tu navegador no soporta el formato de video.
+        </video>
+    </div>
+
+    <!-- Capa 2: Contenido superpuesto al fondo -->
+     <!-- Capa 2: Encabezado -->
+    <div class="content-layer">
+        <!-- Tarjeta del reproductor de estilo Spotify -->
+        <div class="audio-player-card">
+        <!-- Sección del título dentro de la tarjeta -->
+        <div class="audio-player-title">
+            <h3>Escúchalas mientras estés aquí</h3>
+        </div>
+        
+        <!-- Sección del logo y reproductor -->
+        <div class="audio-player-body">
+            <!-- Miniatura del logo de la canción -->
+            <img class="song-logo" id="songLogo" src="../content/img/Logo_Yebbas_Heartbreak.png" alt="Logo de la canción">
+            
+            <!-- Contenedor del reproductor de audio y el selector de canciones -->
+            <div class="audio-player-container">
+            <audio id="audioPlayer" controls>
+                <source data-logo="../content/img/Logo_Cant_Help.png" src="../content/audio/Yebbas Heartbreak.mp3" type="audio/mpeg">
+                <source data-logo="../content/img/Logo_Die_For_You.png" src="../content/audio/I Could Die for You.mp3" type="audio/mpeg">
+                <source data-logo="../content/img/Logo_Wanna_Be_Yours.png" src="../content/audio/I Wanna Be Yours.mp3" type="audio/mpeg">
+                Tu navegador no soporta el reproductor de audio.
+            </audio>
+            
+            <!-- Selector de canciones -->
+            <select class="song-selector" id="songSelector">
+                <option data-logo="../content/img/Logo_Yebbas_Heartbreak.png" value="../content/audio/Yebbas Heartbreak.mp3">Yebba's Heartbreak</option>
+                <option data-logo="../content/img/Logo_Die_For_You.png" value="../content/audio/I Could Die for You.mp3">I Could Die for You</option>
+                <option data-logo="../content/img/Logo_Wanna_Be_Yours.png" value="../content/audio/I Wanna Be Yours.mp3">I Wanna Be Yours</option>
+            </select>
+            </div>
+        </div>
+
+        </div>
+
+        <!-- Sección Encabezado -->
+        <header>
+            <h1>Para mi estrellita. 💫💗</h1>
+        </header>
+
+        <!-- Sección Cuerpo -->
+        <main>
+            <div class="container" id="contentContainer">
+                <div class="content">
+                    <div class="intro-card">
+                        <p class="intro">
+                            En el vasto universo, entre millones de estrellas. Te amo más que todas las estrellas del firmamento.
+                        </p>
+                    </div>
+
+                    <!-- Sección de imagen y mensaje -->
+                    <div class="image-section">
+                        <img class="heart-image" src="../content/img/heart_sin_fondo.png" alt="Corazón que simboliza el amor" loading="lazy">
+                    </div>
+
+                    <!-- Botón interactivo -->
+                    <button id="messageButton">Haz click para saber cuánto te amo</button>
+
+                    <!-- Modal oculto inicialmente -->
+                    <div class="modal" id="poemModal">
+                        <div class="modal-content">
+                            <span class="close">&times;</span>
+                            <h2>Un Poema para ti</h2>
+                            <p>
+                                Eres la luz que ilumina mis noches,<br>
+                                la estrella que guía mi camino,<br>
+                                cada día contigo es un nuevo cielo,<br>
+                                lleno de amor y destino.<br><br>
+                                Como las estrellas en la inmensidad,<br>
+                                mi amor por ti es infinito,<br>
+                                brilla siempre, mi estrellita,<br>
+                                eres mi todo, mi amor infinito.
+                            </p>
+                            <img class="heart-animation" src="../content/img/heart_2_sin_fondo.png" alt="Animación de un corazón" loading="lazy">
+                        </div>
+                    </div>
+
+                    <!-- Sección de cartas -->
+                    <div class="section">
+                        <h2>Cartas desde mi corazón</h2>
+                        <div class="letters">
+                            <!-- Carta 1 -->
+                            <div class="letter">
+                                <p>"Cada vez que te veo, siento como si un millón de estrellas brillaran solo para mí. Eres mi universo entero."</p>
+                                <div class="letter-image-container">
+                                    <img class="letter-image" src="../content/img/Universo_sin_fondo.png" alt="Imagen relacionada con la carta 1">
+                                </div>
+                            </div>
+
+                            <!-- Carta 2 -->
+                            <div class="letter">
+                                <p>"El cielo nocturno me recuerda lo afortunado que soy de tenerte. Eres la luz que guía mi vida."</p>
+                                <div class="letter-image-container">
+                                    <img class="letter-image" src="../content/img/Estrella_Luz_sin_fondo.png" alt="Imagen relacionada con la carta 2">
+                                </div>
+                            </div>
+
+                            <!-- Carta 3 -->
+                            <div class="letter">
+                                <p>"Si pudiera darte una estrella por cada vez que pienso en ti, ya tendrías el cielo entero."</p>
+                                <div class="letter-image-container">
+                                    <img class="letter-image" src="../content/img/estrellas_sin_fondo.png" alt="Imagen relacionada con la carta 3">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Nueva sección: Carrusel estilo libro -->
+                    <!-- Nueva sección: Carrusel de libro -->
+                    <div class="book-carousel-section">
+                        <h2>Un catalogo de ti</h2>
+                        
+                        <div class="book-carousel">
+                            <!-- Flecha izquierda para retroceder -->
+                            <button class="prev-button" id="prevBtn">&#10094;</button>
+
+                            <!-- Contenedor de las páginas -->
+                            <div class="book-pages">
+                                <!-- Página 1 -->
+                                <div class="book-page">
+                                    <div class="book-text">
+                                        <p>Desde el primer momento en que te vi, supe que serías alguien especial en mi vida.</p>
+                                    </div>
+                                    <div class="book-image">
+                                        <img src="../content/img/Foto 1 Pag 1.jpg" alt="Foto 1 de ella" class="book-photo">
+                                    </div>
+                                </div>
+                                
+                                <!-- Página 2 -->
+                                <div class="book-page">
+                                    <div class="book-text">
+                                        <p>Cada día que pasa, tu presencia me llena de amor y felicidad.</p>
+                                    </div>
+                                    <div class="book-image">
+                                        <img src="../content/img/Foto 2 Pag 2.jpg" alt="Foto 2 de ella" class="book-photo">
+                                    </div>
+                                </div>
+
+                                <!-- Página 3 -->
+                                <div class="book-page">
+                                    <div class="book-text">
+                                        <p>Gracias por ser mi luz, mi estrellita, brillando y dándome calidez en mi oscuridad</p>
+                                    </div>
+                                    <div class="book-image">
+                                        <img src="../content/img/Foto 3 Pag 3.jpg" alt="Foto 3 de ella" class="book-photo">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Flecha derecha para avanzar -->
+                            <button class="next-button" id="nextBtn">&#10095;</button>
+                        </div>
+                    </div>
+
+                    <!-- Nueva sección: Reproductor de video en la capa 2 -->
+                    <div class="video-section">
+                        <h2>Eres tu mi estrella.✨</h2>
+                        
+                        <div class="video-container">
+                            <video id="specialVideo" class="styled-video" controls poster="../content/img/Portada_Video_Ella.jpg">
+                                <source src="../content/vdo/Video_Ella.mp4" type="video/mp4">
+                                Tu navegador no soporta el video.
+                            </video>
+                        </div>
+                    </div>
+
+                    <!-- Nueva sección: Lista de reproducción de Spotify -->
+                    <div class="spotify-playlist-section">
+                        <h2>Esta lista es para ti.</h2>
+                        
+                        <div class="spotify-embed-container">
+                            <iframe 
+                                title="Lista de reproducción de Spotify: Especial para mi estrellita"
+                                style="border-radius:12px" 
+                                src="https://open.spotify.com/embed/playlist/6JVPLAAMwe1CmID0bWmIj3?utm_source=generator" 
+                                width="100%" 
+                                height="352" 
+                                frameborder="0" 
+                                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                                loading="lazy">
+                            </iframe>
+                        </div>
+                    </div>
+
+                    
+                   <!-- Nueva sección: Reloj de Amor -->
+                    <div class="love-clock-section">
+                        <h2>Reloj de Amor</h2>
+
+                        <div class="love-clock-container">
+                            <!-- Reloj digital -->
+                            <div id="loveClock" class="love-clock"></div>
+
+                            <!-- Mensaje de amor -->
+                            <div id="loveMessage" class="love-message"></div>
+                            
+                            <!-- Botón para pausar el reloj (opcional) -->
+                            <button id="pauseClock" class="clock-control">Pausar Reloj</button>
+                        </div>
+                    </div>
+
+                    <!-- Sección final con animación y tarjeta -->
+                    <div class="section final-card">
+                        <div class="final-card-content">
+                            <h2>Siempre serás mi estrellita. 💫💗</h2>
+                            <p>A través de todos los universos posibles, en cada rincón de la galaxia, mi amor por ti siempre brillará. Eres y siempre serás mi estrellita.</p>
+                            <div class="image-container">
+                                <img class="space-image" src="../content/img/ultima_frase.jpg" alt="Espacio con estrellas y planetas" loading="lazy">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Enlace al archivo JavaScript -->
+    <script src="../js/scripts.js"></script>
+</body>
+</html>
