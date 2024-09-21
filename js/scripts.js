@@ -221,7 +221,6 @@ carouselContainer.addEventListener('touchend', (e) => {
 // scripts.js: Funcionalidad para el Reloj de Amor
 
 document.addEventListener("DOMContentLoaded", function() {
-    // Array de mensajes de amor dependiendo de la hora del día
     const loveMessages = [
         "Cada hora contigo es un regalo, mi estrellita.",
         "Pienso en ti con cada latido de mi corazón.",
@@ -236,7 +235,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const clockElement = document.getElementById("loveClock");
     const messageElement = document.getElementById("loveMessage");
     const pauseButton = document.getElementById("pauseClock");
-    let isPaused = false; // Variable para pausar el reloj
+    let isPaused = false; 
 
     // Función para actualizar el reloj y el mensaje
     function updateClock() {
@@ -261,7 +260,7 @@ document.addEventListener("DOMContentLoaded", function() {
             setTimeout(() => {
                 clockElement.classList.remove('fade-in');
                 messageElement.classList.remove('fade-in');
-            }, 2000); // 2 segundos de animación
+            }, 2000); 
         }
     }
 
@@ -273,7 +272,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Actualizar el reloj cada segundo
     setInterval(updateClock, 1000);
-
-    // Inicializar el reloj inmediatamente
     updateClock();
 });
+
