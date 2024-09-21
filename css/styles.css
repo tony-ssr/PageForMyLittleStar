@@ -37,6 +37,7 @@ h1, h2, h3, p, button {
 
 /* Establece un ancho máximo para los contenedores */
 .content-layer, .audio-player-card, .final-card, .book-carousel-section, .video-section, .spotify-playlist-section, .love-clock-section {
+    will-change: transform, opacity;
     width: 100%;
     max-width: 100%; /* Asegura que el contenido ocupe todo el ancho disponible */
     margin: 0 auto;
@@ -136,6 +137,7 @@ button, .modal {
 
 /* Capa de contenido que se coloca sobre el fondo */
 .content-layer {
+    will-change: transform, opacity;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -782,6 +784,7 @@ button:hover {
 
 /* Estilos para la sección del reloj de amor */
 .love-clock-section {
+    position: relative; /* Necesario para usar el pseudo-elemento */
     background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro opaco */
     padding: 40px;
     border-radius: 15px;
@@ -790,8 +793,27 @@ button:hover {
     text-align: center;
     color: white;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4); /* Sombra para dar profundidad */
-    background-image: url('../content/img/stars_background.png'); /* Fondo de estrellas */
+    z-index: 1; /* Asegura que el contenido esté por encima de la imagen */
+    overflow: hidden; /* Evita que el contenido salga del contenedor */
 }
+
+/* Añade un pseudo-elemento con la imagen de fondo */
+.love-clock-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../content/img/Fondo_Reloj.png');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.5; /* Ajusta la opacidad de la imagen de fondo */
+    z-index: -1; /* Coloca la imagen detrás del contenido */
+    border-radius: 15px; /* Asegura que la imagen tenga el mismo radio que el contenedor */
+}
+
+
 
 .love-clock-section h2 {
     font-size: 2rem;
@@ -810,7 +832,8 @@ button:hover {
 
 /* Estilo del reloj digital */
 .love-clock {
-    font-size: 2.5rem;
+    opacity: 1; /* Inicialmente, el reloj se muestra completamente */
+    font-size: 2.5rem; /* Tamaño más grande */
     color: #ffdd99; /* Color dorado claro para el reloj */
     text-shadow: 0 0 10px #fff, 0 0 20px #ffdd99, 0 0 30px #ffdd99;
     transition: opacity 0.5s ease-in-out; /* Transición suave */
@@ -818,7 +841,8 @@ button:hover {
 
 /* Estilo del mensaje de amor */
 .love-message {
-    font-size: 1.5rem;
+    opacity: 1; /* Inicialmente, el mensaje se muestra completamente */
+    font-size: 1.5rem; /* Tamaño más pequeño */
     color: #ffd1dc; /* Color rosado */
     text-shadow: 0 0 10px #fff, 0 0 20px #ffd1dc, 0 0 30px #ffd1dc;
     transition: opacity 0.5s ease-in-out; /* Transición suave */
