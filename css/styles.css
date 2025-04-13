@@ -1,3 +1,9 @@
+/*===========================================================================
+* 1. RESET Y CONFIGURACIÓN BÁSICA
+* Configuraciones iniciales para normalizar estilos entre navegadores
+* y establecer los parámetros base de la página
+===========================================================================*/
+
 /* Reset CSS básico para asegurar consistencia entre navegadores */
 * {
     margin: 0;
@@ -5,7 +11,7 @@
     box-sizing: border-box;
 }
 
-/* Aseguramos que el fondo del html y body sea negro */
+/* Configuración base para html y body */
 html, body {
     font-family: 'Poppins', sans-serif;
     background-color: #000000; /* Fondo negro para toda la página */
@@ -16,26 +22,31 @@ html, body {
     overflow-x: hidden; /* Para evitar desbordamiento lateral */
 }
 
-/* Asegura que todo el contenido se ajuste a la pantalla y respete las capas superiores */
+/* Configuración específica del body para manejo de capas */
 body {
     font-family: 'Poppins', sans-serif; /* Fuente Poppins de Google Fonts */
     position: relative; /* Asegura que las capas se mantengan por encima */
     z-index: -2; /* Fondo de la página estará detrás de todo */
 }
 
-/* Ajustar estilos en párrafos, encabezados y textos si es necesario */
+/* Configuración tipográfica global */
 h1, h2, h3, p, button {
     font-family: 'Poppins', sans-serif;
 }
 
-/* Capa 2: Ajustes generales para contenedores */
+/*===========================================================================
+* 2. LAYOUT Y CONTENEDORES
+* Configuración de los contenedores principales y su comportamiento responsive
+===========================================================================*/
+
+/* Contenedor principal */
 .container {
     max-width: 100%;
     padding: 0 20px; /* Añade padding para evitar que el contenido toque los bordes */
     margin: 0 auto; /* Asegura que el contenido esté centrado */
 }
 
-/* Establece un ancho máximo para los contenedores */
+/* Configuración común para todas las secciones principales */
 .content-layer, .audio-player-card, .final-card, .book-carousel-section, .video-section, .spotify-playlist-section, .love-clock-section {
     will-change: transform, opacity;
     width: 100%;
@@ -45,19 +56,22 @@ h1, h2, h3, p, button {
     box-sizing: border-box; /* Incluye el padding y borde en el tamaño del contenedor */
 }
 
-/* Ajustes adicionales para cartas y secciones */
+/* Configuración para las cartas de mensajes */
 .letters, .letter {
     width: 100%; /* Cartas ocuparán todo el ancho de la pantalla en móviles */
     max-width: 100%;
 }
 
-
-
-/* Ajuste de botones y modales */
+/* Configuración base para botones y modales */
 button, .modal {
     max-width: 100%;
     margin: 0 auto; /* Centrar el botón y modal */
 }
+
+/*===========================================================================
+* 3. RESPONSIVE DESIGN
+* Ajustes para diferentes tamaños de pantalla
+===========================================================================*/
 
 /* Para pantallas más pequeñas, ajustamos márgenes y fuentes */
 @media only screen and (max-width: 480px) {
@@ -80,20 +94,45 @@ button, .modal {
     }
 }
 
-/* Estilos para el preloader */
+/*===========================================================================
+* 4. PRELOADER
+* Estilos para la pantalla de carga inicial
+===========================================================================*/
+
+/* Contenedor principal del preloader */
 #preloader {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: #000; /* Fondo oscuro mientras se carga */
+    background: #000;
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000; /* Por encima de todo */
+    z-index: 1000;
+    opacity: 1;
+    transition: opacity 0.5s ease-out;
 }
 
+/*===========================================================================
+* 5. ANIMACIONES
+* Definición de animaciones utilizadas en la página
+===========================================================================*/
+
+/* Animación de entrada desde abajo */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Elemento de carga giratorio */
 .loader {
     border: 8px solid #f3f3f3; /* Color del borde externo */
     border-top: 8px solid #3498db; /* Color del borde giratorio */
@@ -103,12 +142,17 @@ button, .modal {
     animation: spin 1s linear infinite; /* Animación de giro */
 }
 
-/* Animación del preloader */
+/* Animación de rotación para el preloader */
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
 
+
+/*===========================================================================
+* 6. FONDO DE VIDEO
+* Configuración del video de fondo y sus capas
+===========================================================================*/
 
 /* Capa de fondo que contendrá el video */
 .background-layer {
@@ -135,30 +179,36 @@ button, .modal {
     object-fit: cover; /* Asegura que el video mantenga sus proporciones */
 }
 
+/*===========================================================================
+* 7. CAPA DE CONTENIDO PRINCIPAL
+* Estilos para la capa que contiene el contenido principal sobre el fondo
+===========================================================================*/
+
 /* Capa de contenido que se coloca sobre el fondo */
 .content-layer {
-    will-change: transform, opacity;
+    will-change: transform;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-height: 100vh; /* Asegura que el contenido ocupe toda la pantalla */
+    min-height: 100vh;
     text-align: center;
     padding: 20px;
     z-index: 1;
-    opacity: 5; /* Inicia con opacidad 0 para la animación */
-    transform: translateY(50px); /* Comienza desplazado para el efecto de entrada */
-    transition: opacity 1.5s ease-out, transform 1.5s ease-out; /* Transiciones para la entrada */
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 1.2s ease-out forwards;
+    transition: transform 0.3s ease-out;
 }
 
-/* Estilos para el título */
+/* Estilos para el título principal */
 h1 {
     font-family: 'Arial', sans-serif;
     font-size: 3rem;
     color: white;
 }
 
-/* Estilos para el párrafo */
+/* Estilos para los párrafos de texto */
 p {
     font-family: 'Arial', sans-serif;
     font-size: 1.2rem;
@@ -186,7 +236,14 @@ p {
 }
 
 
-/* Capa 2: Encabezado, cuerpo y pie de página */
+/*===========================================================================
+* 8. COMPONENTES ESPECÍFICOS
+* Estilos para los diferentes componentes y secciones de la página
+===========================================================================*/
+
+/*---------------------------------------------------------------------------
+* 8.1 Reproductor de Audio
+---------------------------------------------------------------------------*/
 
 /* Estilo para la tarjeta del reproductor de audio (estilo Spotify) */
 .audio-player-card {
@@ -273,8 +330,9 @@ p {
 
 
 
-/* Capa 2: Cuerpo*/
-
+/*---------------------------------------------------------------------------
+* 8.2 Contenedor Principal y Elementos Generales
+---------------------------------------------------------------------------*/
 
 .container {
     position: relative;
@@ -306,6 +364,10 @@ p {
     animation: fadeIn 4s ease-in-out;
 }
 
+/*---------------------------------------------------------------------------
+* 8.3 Tarjeta de Introducción
+---------------------------------------------------------------------------*/
+
 .intro-card {
     background-color: rgba(0, 0, 0, 0.6); /* Fondo oscuro y opaco */
     padding: 20px;
@@ -324,7 +386,11 @@ p {
 }
 
 
-/* Estilos de las cartas */
+/*---------------------------------------------------------------------------
+* 8.4 Sección de Cartas
+---------------------------------------------------------------------------*/
+
+/* Contenedor de las cartas */
 .letters {
     display: flex;
     justify-content: space-evenly;
@@ -357,6 +423,11 @@ p {
 }
 
 
+/*---------------------------------------------------------------------------
+* 8.5 Imágenes y Elementos Decorativos
+---------------------------------------------------------------------------*/
+
+/* Imagen de corazón con animación */
 .heart-image {
     width: 150px;
     animation: heartbeat 2s infinite;
@@ -385,7 +456,7 @@ button:hover {
     animation: fadeIn 3s ease-in-out;
 }
 
-/* Estrellas y planetas animados */
+/* Elementos decorativos de fondo */
 .stars, .twinkling, .planets {
     position: absolute;
     top: 0;
@@ -396,7 +467,12 @@ button:hover {
     pointer-events: none;
 }
 
-/* Animaciones */
+/*===========================================================================
+* 9. ANIMACIONES ADICIONALES
+* Definiciones de animaciones utilizadas en diferentes elementos
+===========================================================================*/
+
+/* Animación de aparición gradual */
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
@@ -427,7 +503,12 @@ button:hover {
     to { background-position: -5000px 2500px; }
 }
 
-/* Media Queries para pantallas más pequeñas */
+/*===========================================================================
+* 10. MEDIA QUERIES ADICIONALES
+* Ajustes responsivos para diferentes tamaños de pantalla
+===========================================================================*/
+
+/* Pantallas grandes (hasta 1200px) */
 @media only screen and (max-width: 1200px) {
     h1 {
         font-size: 3rem;
@@ -463,7 +544,12 @@ button:hover {
         width: 90%; /* Las cartas se muestran como bloques completos en pantallas pequeñas */
     }
     
-    .heart-image {
+    /*---------------------------------------------------------------------------
+* 8.5 Imágenes y Elementos Decorativos
+---------------------------------------------------------------------------*/
+
+/* Imagen de corazón con animación */
+.heart-image {
         width: 100px; /* Imagen del corazón más pequeña */
     }
     
@@ -500,12 +586,22 @@ button:hover {
         padding: 8px 16px;
     }
 
-    .heart-image {
+    /*---------------------------------------------------------------------------
+* 8.5 Imágenes y Elementos Decorativos
+---------------------------------------------------------------------------*/
+
+/* Imagen de corazón con animación */
+.heart-image {
         width: 80px; /* Imagen del corazón aún más pequeña en móviles */
     }
 }
 
-/* Estilos del modal */
+/*===========================================================================
+* 11. MODAL
+* Estilos para el modal de poema y sus componentes
+===========================================================================*/
+
+/* Contenedor principal del modal */
 .modal {
     display: none; /* Oculto inicialmente */
     position: fixed;
@@ -561,7 +657,7 @@ button:hover {
     color: #ff1493;
 }
 
-/* Animación de desvanecimiento del texto */
+/* Animaciones específicas del modal */
 @keyframes fadeInText {
     from { opacity: 0; }
     to { opacity: 1; }
@@ -572,6 +668,15 @@ button:hover {
     from { opacity: 0; transform: scale(0.8); } /* Comienza más pequeño */
     to { opacity: 1; transform: scale(1); } /* Aparece a tamaño normal */
 }
+
+/*===========================================================================
+* 12. COMPONENTES ADICIONALES
+* Estilos para componentes específicos como banner, carrusel, etc.
+===========================================================================*/
+
+/*---------------------------------------------------------------------------
+* 12.1 Banner
+---------------------------------------------------------------------------*/
 
 .banner-container {
     width: 100%;
@@ -601,7 +706,11 @@ button:hover {
     }
 }
 
-/* Sección del carrusel tipo libro */
+/*---------------------------------------------------------------------------
+* 12.2 Carrusel Tipo Libro
+---------------------------------------------------------------------------*/
+
+/* Contenedor principal del carrusel */
 .book-carousel-section {
     background-color: rgba(0, 0, 0, 0.6); /* Fondo opaco simulando recubrimiento de un libro */
     padding: 40px;
@@ -689,7 +798,11 @@ button:hover {
 
 
 
-/* Nueva sección del video */
+/*---------------------------------------------------------------------------
+* 12.3 Sección de Video
+---------------------------------------------------------------------------*/
+
+/* Contenedor principal de la sección de video */
 .video-section {
     background-color: rgba(0, 0, 0, 0.6); /* Fondo oscuro opaco */
     padding: 40px;
@@ -750,7 +863,11 @@ button:hover {
 }
 
 
-/* Nueva sección de Spotify */
+/*---------------------------------------------------------------------------
+* 12.4 Sección de Playlist de Spotify
+---------------------------------------------------------------------------*/
+
+/* Contenedor principal de la sección de Spotify */
 .spotify-playlist-section {
     background-color: rgba(0, 0, 0, 0.6); /* Fondo oscuro opaco */
     padding: 40px;
@@ -782,7 +899,11 @@ button:hover {
 
 
 
-/* Estilos para la sección del reloj de amor */
+/*---------------------------------------------------------------------------
+* 12.5 Sección del Reloj de Amor
+---------------------------------------------------------------------------*/
+
+/* Contenedor principal de la sección del reloj */
 .love-clock-section {
     position: relative; /* Necesario para usar el pseudo-elemento */
     background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro opaco */

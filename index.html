@@ -32,11 +32,11 @@
 
     <!-- Capa 1: Fondo con video y respaldo de imagen -->
     <div class="background-layer">
-        <video class="background-video" autoplay muted loop playsinline preload="auto">
+        <video class="background-video" autoplay muted loop playsinline preload="metadata" data-testid="background-video" aria-hidden="true">
             <!-- Fuente del video optimizado en formato MP4 -->
             <source src="./content/vdo/Fondo_Definitivo_reducido_reducido.mp4" type="video/mp4">
             <!-- Imagen de respaldo en caso de que el video no cargue -->
-            <img class="fallback-image" src="./content/img/fondo_respaldo.jpg" alt="Fondo de la página" loading="lazy">
+            <img class="fallback-image" src="./content/img/fondo_respaldo.jpg" alt="Fondo decorativo de la página" loading="lazy" decoding="async">
             <!-- Mensaje si el navegador no soporta el formato de video -->
             Tu navegador no soporta el formato de video.
         </video>
@@ -55,7 +55,7 @@
         <!-- Sección del logo y reproductor -->
         <div class="audio-player-body">
             <!-- Miniatura del logo de la canción -->
-            <img class="song-logo" id="songLogo" src="./content/img/Logo_Yebbas_Heartbreak.png" alt="Logo de la canción">
+            <img class="song-logo" id="songLogo" src="./content/img/Logo_Yebbas_Heartbreak.png" alt="Logo de la canción actual" loading="lazy" decoding="async">
             
             <!-- Contenedor del reproductor de audio y el selector de canciones -->
             <div class="audio-player-container">
@@ -94,7 +94,7 @@
 
                     <!-- Sección de imagen y mensaje -->
                     <div class="image-section">
-                        <img class="heart-image" src="./content/img/heart_sin_fondo.png" alt="Corazón que simboliza el amor" loading="lazy">
+                        <img class="heart-image" src="./content/img/heart_sin_fondo.png" alt="Corazón que simboliza el amor" loading="lazy" decoding="async" width="150" height="150">
                     </div>
 
                     <!-- Botón interactivo -->
@@ -115,7 +115,7 @@
                                 brilla siempre, mi estrellita,<br>
                                 eres mi todo, mi amor infinito.
                             </p>
-                            <img class="heart-animation" src="./content/img/heart_2_sin_fondo.png" alt="Animación de un corazón" loading="lazy">
+                            <img class="heart-animation" src="./content/img/heart_2_sin_fondo.png" alt="Animación de un corazón palpitante" loading="lazy" decoding="async" width="100" height="100">
                         </div>
                     </div>
 
@@ -127,7 +127,7 @@
                             <div class="letter">
                                 <p>"Cada vez que te veo, siento como si un millón de estrellas brillaran solo para mí. Eres mi universo entero."</p>
                                 <div class="letter-image-container">
-                                    <img class="letter-image" src="./content/img/Universo_sin_fondo.png" alt="Imagen relacionada con la carta 1">
+                                    <img class="letter-image" src="./content/img/Universo_sin_fondo.png" alt="Imagen del universo estrellado" loading="lazy" decoding="async" width="200" height="200">
                                 </div>
                             </div>
 

@@ -38,24 +38,42 @@ function smoothScrollTo(element, duration = 300) {
     const startPosition = window.scrollY;
     const distance = targetPosition - startPosition;
     let startTime = null;
+    let rafId = null;
 
     function animation(currentTime) {
         if (startTime === null) startTime = currentTime;
         const timeElapsed = currentTime - startTime;
-        const run = ease(timeElapsed, startPosition, distance, duration);
-        window.scrollTo(0, run);
-        if (timeElapsed < duration) requestAnimationFrame(animation);
+        const progress = Math.min(timeElapsed / duration, 1);
+        
+        const easedProgress = easeInOutQuad(progress);
+        const currentPosition = startPosition + distance * easedProgress;
+        
+        window.scrollTo({
+            top: currentPosition,
+            behavior: 'auto'
+        });
+
+        if (progress < 1) {
+            rafId = requestAnimationFrame(animation);
+        }
     }
 
-    function ease(t, b, c, d) {
-        // Easing function (easeInOutQuad)
-        t /= d / 2;
-        if (t < 1) return c / 2 * t * t + b;
-        t--;
-        return -c / 2 * (t * (t - 2) - 1) + b;
+    function easeInOutQuad(t) {
+        return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
     }
 
-    requestAnimationFrame(animation);
+    // Cleanup function to cancel animation if needed
+    function cleanup() {
+        if (rafId) {
+            cancelAnimationFrame(rafId);
+        }
+    }
+
+    // Start animation
+    rafId = requestAnimationFrame(animation);
+
+    // Return cleanup function
+    return cleanup;
 }
 
 
