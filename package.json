@@ -1,0 +1,47 @@
+{
+  "name": "page-for-my-little-star",
+  "version": "1.0.0",
+  "description": "Una página web especial creada con amor para expresar sentimientos profundos a través de tecnología moderna",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx live-server --port=3000 --open=/index.html",
+    "dev": "npx live-server --port=3000 --open=/index.html --watch=src/",
+    "build": "echo 'Building project...' && npm run minify-css && npm run minify-js",
+    "minify-css": "npx clean-css-cli -o dist/styles.min.css src/styles/styles.css",
+    "minify-js": "npx terser src/scripts/scripts.js -o dist/scripts.min.js",
+    "validate": "npx html-validate index.html",
+    "format": "npx prettier --write \"**/*.{html,css,js,json,md}\""
+  },
+  "keywords": [
+    "love",
+    "romantic",
+    "web-page",
+    "multimedia",
+    "interactive",
+    "personal-project"
+  ],
+  "author": {
+    "name": "Antony Salcedo",
+    "email": "antony@example.com"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "live-server": "^1.2.2",
+    "clean-css-cli": "^5.6.2",
+    "terser": "^5.19.4",
+    "html-validate": "^8.5.0",
+    "prettier": "^3.0.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tu-usuario/PageForMyLittleStar.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tu-usuario/PageForMyLittleStar/issues"
+  },
+  "homepage": "https://github.com/tu-usuario/PageForMyLittleStar#readme",
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=6.0.0"
+  }
+}

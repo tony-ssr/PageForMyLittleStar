@@ -1,0 +1,21 @@
+{
+  "extends": ["html-validate:recommended"],
+  "rules": {
+    "void-style": "omit",
+    "close-order": "error",
+    "doctype-html": "error",
+    "no-trailing-whitespace": "warn",
+    "attribute-boolean-style": "error",
+    "attribute-empty-style": "error",
+    "element-required-attributes": "error",
+    "no-unknown-elements": "error",
+    "no-deprecated-attr": "warn",
+    "prefer-native-element": "warn",
+    "wcag/h37": "error",
+    "wcag/h67": "error",
+    "wcag/h71": "error"
+  },
+  "elements": [
+    "html5"
+  ]
+}
