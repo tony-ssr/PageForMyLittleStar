@@ -180,6 +180,84 @@ button, .modal {
 }
 
 /*===========================================================================
+* 6.5 EFECTOS DE PARTÍCULAS FLOTANTES
+===========================================================================*/
+
+/* Contenedor de partículas flotantes */
+.floating-particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
+
+/* Partículas individuales */
+.particle {
+    position: absolute;
+    opacity: 0.7;
+    animation: floatUp 15s linear infinite;
+}
+
+.particle img {
+    width: 20px;
+    height: 20px;
+    filter: brightness(1.2) drop-shadow(0 0 5px rgba(255, 221, 153, 0.8));
+}
+
+/* Posiciones y delays únicos para cada partícula */
+.particle-1 {
+    left: 10%;
+    animation-delay: 0s;
+    animation-duration: 12s;
+}
+
+.particle-2 {
+    left: 25%;
+    animation-delay: 3s;
+    animation-duration: 18s;
+}
+
+.particle-3 {
+    left: 50%;
+    animation-delay: 6s;
+    animation-duration: 15s;
+}
+
+.particle-4 {
+    left: 75%;
+    animation-delay: 9s;
+    animation-duration: 20s;
+}
+
+.particle-5 {
+    left: 90%;
+    animation-delay: 12s;
+    animation-duration: 14s;
+}
+
+/* Animación de partículas flotantes mejorada */
+@keyframes floatUp {
+    0% {
+        transform: translateY(100vh) rotate(0deg) scale(0.5);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.7;
+    }
+    90% {
+        opacity: 0.7;
+    }
+    100% {
+        transform: translateY(-100px) rotate(360deg) scale(1.2);
+        opacity: 0;
+    }
+}
+
+/*===========================================================================
 * 7. CAPA DE CONTENIDO PRINCIPAL
 * Estilos para la capa que contiene el contenido principal sobre el fondo
 ===========================================================================*/
@@ -431,6 +509,16 @@ p {
 .heart-image {
     width: 150px;
     animation: heartbeat 2s infinite;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    filter: drop-shadow(0 0 10px rgba(255, 182, 193, 0.7));
+}
+
+.heart-image:hover {
+    animation: heartbeat 0.5s ease-in-out infinite;
+    filter: drop-shadow(0 0 20px rgba(255, 182, 193, 1)) 
+            drop-shadow(0 0 30px rgba(255, 105, 180, 0.8));
+    transform: scale(1.1);
 }
 
 button {
@@ -454,6 +542,13 @@ button:hover {
     width: 80%;
     margin-top: 50px;
     animation: fadeIn 3s ease-in-out;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.space-image:hover {
+    transform: scale(1.05) rotate(2deg);
+    filter: brightness(1.1) saturate(1.2);
+    box-shadow: 0 8px 25px rgba(255, 221, 153, 0.4);
 }
 
 /* Elementos decorativos de fondo */
@@ -501,6 +596,27 @@ button:hover {
 @keyframes movePlanets {
     from { background-position: 0 0; }
     to { background-position: -5000px 2500px; }
+}
+
+/* Nuevas animaciones mejoradas */
+@keyframes floatUp {
+    0% { transform: translateY(0px) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+}
+
+@keyframes sparkle {
+    0%, 100% { transform: scale(0) rotate(0deg); opacity: 0; }
+    50% { transform: scale(1) rotate(180deg); opacity: 1; }
+}
+
+@keyframes gentleFloat {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes pulseGlow {
+    0%, 100% { box-shadow: 0 0 5px rgba(255, 221, 153, 0.5); }
+    50% { box-shadow: 0 0 20px rgba(255, 221, 153, 0.8), 0 0 30px rgba(255, 221, 153, 0.6); }
 }
 
 /*===========================================================================
@@ -899,6 +1015,10 @@ button:hover {
 
 
 
+
+
+
+
 /*---------------------------------------------------------------------------
 * 12.5 Sección del Reloj de Amor
 ---------------------------------------------------------------------------*/
@@ -958,6 +1078,9 @@ button:hover {
     color: #ffdd99; /* Color dorado claro para el reloj */
     text-shadow: 0 0 10px #fff, 0 0 20px #ffdd99, 0 0 30px #ffdd99;
     transition: opacity 0.5s ease-in-out; /* Transición suave */
+    animation: pulseGlow 3s ease-in-out infinite;
+    font-family: 'Orbitron', monospace;
+    letter-spacing: 2px;
 }
 
 /* Estilo del mensaje de amor */
@@ -996,6 +1119,24 @@ button:hover {
     100% { opacity: 1; }
 }
 
+
+
+
+/*---------------------------------------------------------------------------
+* 12.7 Efectos de Aparición Gradual
+---------------------------------------------------------------------------*/
+
+/* Secciones con efecto de aparición */
+.fade-in-section {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease;
+}
+
+.fade-in-section.fade-in-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
 
 /* Estilos para la tarjeta de la sección final */
 .final-card {

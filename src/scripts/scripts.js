@@ -293,3 +293,78 @@ document.addEventListener("DOMContentLoaded", function() {
     updateClock();
 });
 
+
+
+// Efectos adicionales para mejorar la interactividad
+document.addEventListener("DOMContentLoaded", function() {
+    // Efecto de parallax suave para elementos decorativos
+    window.addEventListener('scroll', function() {
+        const scrolled = window.pageYOffset;
+        const parallaxElements = document.querySelectorAll('.space-image, .heart-image');
+        
+        parallaxElements.forEach(element => {
+            const speed = 0.5;
+            const yPos = -(scrolled * speed);
+            element.style.transform = `translateY(${yPos}px)`;
+        });
+    });
+    
+    // Efecto de aparición gradual para secciones
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('fade-in-visible');
+            }
+        });
+    }, observerOptions);
+    
+    // Observar todas las secciones principales
+    const sections = document.querySelectorAll('.audio-player-card, .intro-card, .letters-section, .book-carousel, .video-section, .spotify-playlist-section, .moments-gallery-section, .love-clock-section, .final-card');
+    sections.forEach(section => {
+        section.classList.add('fade-in-section');
+        observer.observe(section);
+    });
+    
+    // Efecto especial para el corazón
+    const heartImage = document.querySelector('.heart-image');
+    if (heartImage) {
+        heartImage.addEventListener('click', function() {
+            // Crear corazones flotantes
+            for (let i = 0; i < 5; i++) {
+                createFloatingHeart(this);
+            }
+        });
+    }
+    
+    function createFloatingHeart(sourceElement) {
+        const heart = document.createElement('div');
+        heart.innerHTML = '💖';
+        heart.style.position = 'absolute';
+        heart.style.fontSize = '20px';
+        heart.style.pointerEvents = 'none';
+        heart.style.zIndex = '1000';
+        
+        const rect = sourceElement.getBoundingClientRect();
+        heart.style.left = (rect.left + Math.random() * rect.width) + 'px';
+        heart.style.top = (rect.top + window.scrollY) + 'px';
+        
+        document.body.appendChild(heart);
+        
+        // Animar el corazón flotante
+        heart.animate([
+            { transform: 'translateY(0px) scale(1)', opacity: 1 },
+            { transform: 'translateY(-100px) scale(1.5)', opacity: 0 }
+        ], {
+            duration: 2000,
+            easing: 'ease-out'
+        }).onfinish = () => {
+            document.body.removeChild(heart);
+        };
+     }
+});
+
