@@ -176,64 +176,221 @@ audioPlayer.addEventListener('play', function() {
 });
 
 
-// scripts.js
+// ===== CARRUSEL DE LIBRO - IMPLEMENTACIÓN COMPLETA =====
 
-let currentPage = 0; // Página actual (0, 1, 2)
-const pages = document.querySelectorAll('.book-page');
-const totalPages = pages.length;
-const carouselContainer = document.querySelector('.book-pages');
+// Variables globales del carrusel
+let currentSlideIndex = 0;
+let autoPlayInterval = null;
+let isTransitioning = false;
+const AUTO_PLAY_DURATION = 7000; // 7 segundos
+const TRANSITION_DURATION = 600; // 0.6 segundos
 
-// Botones de navegación
-const nextBtn = document.getElementById('nextBtn');
-const prevBtn = document.getElementById('prevBtn');
+// Inicializar cuando el DOM esté completamente cargado
+document.addEventListener('DOMContentLoaded', function() {
+    initializeNewCarousel();
+});
 
-// Función para cambiar de página
-function showPage(page) {
-    if (page >= totalPages) {
-        currentPage = 0; // Regresa a la primera página en bucle
-    } else if (page < 0) {
-        currentPage = totalPages - 1; // Va a la última página si retrocede desde la primera
-    } else {
-        currentPage = page;
+/**
+ * Inicializa el carrusel con la nueva estructura
+ */
+function initializeNewCarousel() {
+    // Obtener elementos del DOM
+    const carouselTrack = document.getElementById('carouselTrack');
+    const slides = document.querySelectorAll('.carousel-slide');
+    const prevButton = document.getElementById('prevBtn');
+    const nextButton = document.getElementById('nextBtn');
+    const indicators = document.querySelectorAll('.indicator');
+    const carouselWrapper = document.querySelector('.carousel-wrapper');
+    
+    // Validar que todos los elementos existan
+    if (!carouselTrack || !slides.length || !prevButton || !nextButton || !indicators.length) {
+        console.error('❌ Elementos del carrusel no encontrados');
+        return;
     }
-
-    // Mover el contenedor de las páginas
-    carouselContainer.style.transform = `translateX(-${currentPage * 100}%)`;
+    
+    const totalSlides = slides.length;
+    console.log(`✅ Carrusel inicializado con ${totalSlides} slides`);
+    
+    /**
+     * Actualiza la posición del carrusel
+     * @param {number} slideIndex - Índice del slide a mostrar
+     * @param {boolean} animate - Si debe animar la transición
+     */
+    function updateCarouselPosition(slideIndex, animate = true) {
+        if (isTransitioning && animate) return;
+        
+        // Normalizar índice
+        if (slideIndex >= totalSlides) {
+            currentSlideIndex = 0;
+        } else if (slideIndex < 0) {
+            currentSlideIndex = totalSlides - 1;
+        } else {
+            currentSlideIndex = slideIndex;
+        }
+        
+        // Calcular transformación
+        const translateX = -(currentSlideIndex * (100 / totalSlides));
+        
+        if (animate) {
+            isTransitioning = true;
+            carouselTrack.style.transition = `transform ${TRANSITION_DURATION}ms cubic-bezier(0.25, 0.46, 0.45, 0.94)`;
+            
+            setTimeout(() => {
+                isTransitioning = false;
+            }, TRANSITION_DURATION);
+        } else {
+            carouselTrack.style.transition = 'none';
+        }
+        
+        carouselTrack.style.transform = `translateX(${translateX}%)`;
+        
+        // Actualizar indicadores
+        updateIndicators();
+        
+        console.log(`📍 Slide actual: ${currentSlideIndex + 1}/${totalSlides}`);
+    }
+    
+    /**
+     * Actualiza el estado visual de los indicadores
+     */
+    function updateIndicators() {
+        indicators.forEach((indicator, index) => {
+            if (index === currentSlideIndex) {
+                indicator.classList.add('active');
+            } else {
+                indicator.classList.remove('active');
+            }
+        });
+    }
+    
+    /**
+     * Navega al siguiente slide
+     */
+    function goToNextSlide() {
+        updateCarouselPosition(currentSlideIndex + 1);
+    }
+    
+    /**
+     * Navega al slide anterior
+     */
+    function goToPrevSlide() {
+        updateCarouselPosition(currentSlideIndex - 1);
+    }
+    
+    /**
+     * Navega a un slide específico
+     * @param {number} slideIndex - Índice del slide
+     */
+    function goToSlide(slideIndex) {
+        updateCarouselPosition(slideIndex);
+    }
+    
+    /**
+     * Inicia el auto-play
+     */
+    function startAutoPlay() {
+        if (autoPlayInterval) {
+            clearInterval(autoPlayInterval);
+        }
+        autoPlayInterval = setInterval(goToNextSlide, AUTO_PLAY_DURATION);
+        console.log('▶️ Auto-play iniciado');
+    }
+    
+    /**
+     * Detiene el auto-play
+     */
+    function stopAutoPlay() {
+        if (autoPlayInterval) {
+            clearInterval(autoPlayInterval);
+            autoPlayInterval = null;
+            console.log('⏸️ Auto-play detenido');
+        }
+    }
+    
+    /**
+     * Reinicia el auto-play
+     */
+    function restartAutoPlay() {
+        stopAutoPlay();
+        startAutoPlay();
+    }
+    
+    // Event Listeners para botones de navegación
+    nextButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        goToNextSlide();
+        restartAutoPlay();
+    });
+    
+    prevButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        goToPrevSlide();
+        restartAutoPlay();
+    });
+    
+    // Event Listeners para indicadores
+    indicators.forEach((indicator, index) => {
+        indicator.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (index !== currentSlideIndex) {
+                goToSlide(index);
+                restartAutoPlay();
+            }
+        });
+    });
+    
+    // Pausar auto-play al hacer hover en controles
+    const controls = [nextButton, prevButton, ...indicators];
+    controls.forEach(control => {
+        control.addEventListener('mouseenter', stopAutoPlay);
+        control.addEventListener('mouseleave', startAutoPlay);
+    });
+    
+    // Soporte para gestos táctiles
+    let touchStartX = 0;
+    let touchEndX = 0;
+    let touchStartTime = 0;
+    const MIN_SWIPE_DISTANCE = 50;
+    const MAX_SWIPE_TIME = 300;
+    
+    carouselWrapper.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].clientX;
+        touchStartTime = Date.now();
+        stopAutoPlay();
+    }, { passive: true });
+    
+    carouselWrapper.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].clientX;
+        const touchDuration = Date.now() - touchStartTime;
+        const touchDistance = touchStartX - touchEndX;
+        
+        // Validar que sea un swipe válido
+        if (Math.abs(touchDistance) >= MIN_SWIPE_DISTANCE && touchDuration <= MAX_SWIPE_TIME) {
+            if (touchDistance > 0) {
+                goToNextSlide(); // Swipe hacia la izquierda
+            } else {
+                goToPrevSlide(); // Swipe hacia la derecha
+            }
+        }
+        
+        restartAutoPlay();
+    }, { passive: true });
+    
+    // Pausar auto-play cuando la pestaña no está visible
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            stopAutoPlay();
+        } else {
+            startAutoPlay();
+        }
+    });
+    
+    // Inicializar carrusel
+    updateCarouselPosition(0, false);
+    startAutoPlay();
+    
+    console.log('🎠 Carrusel completamente inicializado y funcionando');
 }
-
-// Navegación con las flechas
-nextBtn.addEventListener('click', () => showPage(currentPage + 1));
-prevBtn.addEventListener('click', () => showPage(currentPage - 1));
-
-// Cambio automático de página cada 7 segundos
-let autoChange = setInterval(() => {
-    showPage(currentPage + 1);
-}, 7000);
-
-// Detener el cambio automático al interactuar con el usuario
-nextBtn.addEventListener('mouseover', () => clearInterval(autoChange));
-prevBtn.addEventListener('mouseover', () => clearInterval(autoChange));
-
-// Reiniciar el cambio automático cuando el usuario deja de interactuar
-nextBtn.addEventListener('mouseleave', () => autoChange = setInterval(() => showPage(currentPage + 1), 7000));
-prevBtn.addEventListener('mouseleave', () => autoChange = setInterval(() => showPage(currentPage + 1), 7000));
-
-// Agregar soporte para deslizar en pantallas táctiles
-let touchStartX = 0;
-let touchEndX = 0;
-
-carouselContainer.addEventListener('touchstart', (e) => {
-    touchStartX = e.changedTouches[0].screenX;
-});
-
-carouselContainer.addEventListener('touchend', (e) => {
-    touchEndX = e.changedTouches[0].screenX;
-    if (touchEndX < touchStartX) {
-        showPage(currentPage + 1); // Desliza hacia la izquierda
-    } else if (touchEndX > touchStartX) {
-        showPage(currentPage - 1); // Desliza hacia la derecha
-    }
-});
 
 
 // scripts.js: Funcionalidad para el Reloj de Amor

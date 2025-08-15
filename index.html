@@ -169,52 +169,70 @@
                         </div>
                     </div>
 
-                    <!-- Nueva sección: Carrusel estilo libro -->
-                    <!-- Nueva sección: Carrusel de libro -->
-                    <div class="book-carousel-section">
-                        <h2>Un catalogo de ti</h2>
+                    <!-- Carrusel de Libro - Nueva Implementación -->
+                    <section class="carousel-section">
+                        <h2 class="carousel-title">Un catálogo de ti</h2>
                         
-                        <div class="book-carousel">
-                            <!-- Flecha izquierda para retroceder -->
-                            <button class="prev-button" id="prevBtn">&#10094;</button>
+                        <div class="carousel-container">
+                            <!-- Botón anterior -->
+                            <button class="carousel-btn carousel-btn-prev" id="prevBtn" aria-label="Página anterior">
+                                <span class="btn-icon">‹</span>
+                            </button>
 
-                            <!-- Contenedor de las páginas -->
-                            <div class="book-pages">
-                                <!-- Página 1 -->
-                                <div class="book-page">
-                                    <div class="book-text">
-                                        <p>Desde el primer momento en que te vi, supe que serías alguien especial en mi vida.</p>
+                            <!-- Contenedor principal del carrusel -->
+                            <div class="carousel-wrapper">
+                                <div class="carousel-track" id="carouselTrack">
+                                    <!-- Slide 1 -->
+                                    <div class="carousel-slide" data-slide="0">
+                                        <div class="slide-content">
+                                            <div class="slide-text">
+                                                <p>Desde el primer momento en que te vi, supe que serías alguien especial en mi vida.</p>
+                                            </div>
+                                            <div class="slide-image">
+                                                <img src="./assets/media/images/carousel/Foto 1 Pag 1.jpg" alt="Foto especial 1" class="carousel-photo" loading="lazy">
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="book-image">
-                                        <img src="./assets/media/images/carousel/Foto 1 Pag 1.jpg" alt="Foto 1 de ella" class="book-photo">
+                                    
+                                    <!-- Slide 2 -->
+                                    <div class="carousel-slide" data-slide="1">
+                                        <div class="slide-content">
+                                            <div class="slide-text">
+                                                <p>Cada día que pasa, tu presencia me llena de amor y felicidad.</p>
+                                            </div>
+                                            <div class="slide-image">
+                                                <img src="./assets/media/images/carousel/Foto 2 Pag 2.jpg" alt="Foto especial 2" class="carousel-photo" loading="lazy">
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                
-                                <!-- Página 2 -->
-                                <div class="book-page">
-                                    <div class="book-text">
-                                        <p>Cada día que pasa, tu presencia me llena de amor y felicidad.</p>
-                                    </div>
-                                    <div class="book-image">
-                                        <img src="./assets/media/images/carousel/Foto 2 Pag 2.jpg" alt="Foto 2 de ella" class="book-photo">
-                                    </div>
-                                </div>
 
-                                <!-- Página 3 -->
-                                <div class="book-page">
-                                    <div class="book-text">
-                                        <p>Gracias por ser mi luz, mi estrellita, brillando y dándome calidez en mi oscuridad</p>
-                                    </div>
-                                    <div class="book-image">
-                                        <img src="./assets/media/images/carousel/Foto 3 Pag 3.jpg" alt="Foto 3 de ella" class="book-photo">
+                                    <!-- Slide 3 -->
+                                    <div class="carousel-slide" data-slide="2">
+                                        <div class="slide-content">
+                                            <div class="slide-text">
+                                                <p>Gracias por ser mi luz, mi estrellita, brillando y dándome calidez en mi oscuridad.</p>
+                                            </div>
+                                            <div class="slide-image">
+                                                <img src="./assets/media/images/carousel/Foto 3 Pag 3.jpg" alt="Foto especial 3" class="carousel-photo" loading="lazy">
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <!-- Flecha derecha para avanzar -->
-                            <button class="next-button" id="nextBtn">&#10095;</button>
+                            <!-- Botón siguiente -->
+                            <button class="carousel-btn carousel-btn-next" id="nextBtn" aria-label="Página siguiente">
+                                <span class="btn-icon">›</span>
+                            </button>
                         </div>
-                    </div>
+
+                        <!-- Indicadores de página -->
+                        <div class="carousel-indicators" id="carouselIndicators">
+                            <button class="indicator active" data-slide="0" aria-label="Ir a página 1"></button>
+                            <button class="indicator" data-slide="1" aria-label="Ir a página 2"></button>
+                            <button class="indicator" data-slide="2" aria-label="Ir a página 3"></button>
+                        </div>
+                    </section>
 
                     <!-- Nueva sección: Reproductor de video en la capa 2 -->
                     <div class="video-section">

@@ -53,7 +53,7 @@ h1, h2, h3, p, button {
 }
 
 /* Configuración común para todas las secciones principales */
-.content-layer, .audio-player-card, .final-card, .book-carousel-section, .video-section, .spotify-playlist-section, .love-clock-section {
+.content-layer, .audio-player-card, .final-card, .carousel-section, .video-section, .spotify-playlist-section, .love-clock-section {
     will-change: transform, opacity;
     width: 100%;
     max-width: 100%; /* Asegura que el contenido ocupe todo el ancho disponible */
@@ -79,24 +79,230 @@ button, .modal {
 * Ajustes para diferentes tamaños de pantalla
 ===========================================================================*/
 
-/* Para pantallas más pequeñas, ajustamos márgenes y fuentes */
-@media only screen and (max-width: 480px) {
-    h1, h2, p, button {
-        font-size: 0.9rem; /* Tamaño de texto más pequeño para dispositivos pequeños */
+/* Extra Large Screens (1400px y más) */
+@media only screen and (min-width: 1400px) {
+    .container {
+        max-width: 1320px;
+        padding: 0 40px;
     }
     
-    .container, .section, .modal-content {
-        padding: 0 10px; /* Ajusta padding para pantallas más pequeñas */
+    .audio-player-card, .video-section, .spotify-playlist-section, .carousel-section {
+        max-width: 1000px;
+        padding: 60px;
     }
+    
+    h1 {
+        font-size: 4rem;
+    }
+    
+    h2 {
+        font-size: 3rem;
+    }
+}
 
-    .book-photo {
-        max-width: 100%; /* Imagenes se ajustan en pantallas pequeñas */
+/* Large Screens (1200px - 1399px) */
+@media only screen and (max-width: 1399px) and (min-width: 1200px) {
+    .container {
+        max-width: 1140px;
+        padding: 0 30px;
     }
     
-    /* Ajustes para la navegación del carrusel */
-    .prev-button, .next-button {
-        font-size: 1.5rem;
-        padding: 5px;
+    .audio-player-card, .video-section, .spotify-playlist-section, .carousel-section {
+        max-width: 900px;
+        padding: 50px;
+    }
+}
+
+/* Medium Screens (992px - 1199px) */
+@media only screen and (max-width: 1199px) and (min-width: 992px) {
+    .container {
+        max-width: 960px;
+        padding: 0 25px;
+    }
+    
+    .audio-player-card, .video-section, .spotify-playlist-section, .carousel-section {
+        max-width: 800px;
+        padding: 40px;
+    }
+    
+    h1 {
+        font-size: 3.2rem;
+    }
+    
+    h2 {
+        font-size: 2.4rem;
+    }
+    
+    .letter {
+        width: 48%;
+        margin-bottom: 20px;
+    }
+}
+
+/* Small Screens (768px - 991px) */
+@media only screen and (max-width: 991px) and (min-width: 768px) {
+    .container {
+        max-width: 720px;
+        padding: 0 20px;
+    }
+    
+    .audio-player-card, .video-section, .spotify-playlist-section, .carousel-section {
+        max-width: 100%;
+        padding: 35px;
+        margin: 30px auto;
+    }
+    
+    h1 {
+        font-size: 2.8rem;
+        margin-bottom: 25px;
+    }
+    
+    h2 {
+        font-size: 2.2rem;
+        margin-bottom: 20px;
+    }
+    
+    .letter {
+        width: 100%;
+        margin-bottom: 25px;
+    }
+    
+    /* Carrusel mejorado para tablets - estilos removidos */
+    
+    /* Estilos antiguos del carrusel removidos */
+}
+
+/* Extra Small Screens (576px - 767px) */
+@media only screen and (max-width: 767px) and (min-width: 576px) {
+    .container {
+        max-width: 540px;
+        padding: 0 15px;
+    }
+    
+    .audio-player-card, .video-section, .spotify-playlist-section, .carousel-section {
+        padding: 30px 20px;
+        margin: 25px auto;
+        border-radius: 20px;
+    }
+    
+    h1 {
+        font-size: 2.4rem;
+        margin-bottom: 20px;
+        letter-spacing: 1px;
+    }
+    
+    h2 {
+        font-size: 1.9rem;
+        margin-bottom: 18px;
+    }
+    
+    p {
+        font-size: 1.1rem;
+        line-height: 1.5;
+    }
+    
+    button {
+        font-size: 1rem;
+        padding: 12px 24px;
+        margin: 10px 5px;
+    }
+    
+    .heart-image {
+        width: 90px;
+    }
+    
+    /* Estilos antiguos del carrusel removidos */
+}
+
+/* Mobile Screens (hasta 575px) */
+@media only screen and (max-width: 575px) {
+    .container {
+        padding: 0 10px;
+    }
+    
+    .audio-player-card, .video-section, .spotify-playlist-section, .carousel-section {
+        padding: 25px 15px;
+        margin: 20px auto;
+        border-radius: 15px;
+    }
+    
+    h1 {
+        font-size: 2rem;
+        margin-bottom: 15px;
+        letter-spacing: 0.5px;
+    }
+    
+    h2 {
+        font-size: 1.6rem;
+        margin-bottom: 15px;
+    }
+    
+    p {
+        font-size: 1rem;
+        line-height: 1.4;
+    }
+    
+    button {
+        font-size: 0.9rem;
+        padding: 10px 20px;
+        margin: 8px 3px;
+        width: 100%;
+        max-width: 280px;
+    }
+    
+    .letter {
+        width: 100%;
+        margin-bottom: 20px;
+        padding: 20px;
+        font-size: 0.95rem;
+    }
+    
+    .letter-image {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+    
+    .heart-image {
+        width: 70px;
+    }
+    
+    .space-image {
+        width: 100%;
+    }
+    
+    /* Estilos antiguos del carrusel removidos */
+    
+    /* Más estilos antiguos del carrusel removidos */
+    
+    .audio-player-body {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .song-logo {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+    
+    .modal-content {
+        width: 95%;
+        max-width: 95%;
+        padding: 20px;
+        margin: 10px;
+    }
+    
+    .spotify-embed-container {
+        height: 280px;
+        padding: 20px;
+    }
+    
+    .video-container {
+        padding: 20px;
+    }
+    
+    .video-container iframe {
+        width: 100%;
+        height: 200px;
     }
 }
 
@@ -347,25 +553,7 @@ p {
     color: #f1f1f1;
 }
 
-/* Responsividad para dispositivos medianos */
-@media (max-width: 768px) {
-    h1 {
-        font-size: 2.5rem; /* Ajusta el tamaño del título */
-    }
-    p {
-        font-size: 1rem; /* Ajusta el tamaño del texto */
-    }
-}
-
-/* Responsividad para dispositivos pequeños */
-@media (max-width: 480px) {
-    h1 {
-        font-size: 2rem; /* Ajusta aún más el tamaño del título */
-    }
-    p {
-        font-size: 0.9rem; /* Ajusta aún más el tamaño del texto */
-    }
-}
+/* Media queries consolidadas arriba en la sección 3. RESPONSIVE DESIGN */
 
 
 /*===========================================================================
@@ -828,93 +1016,7 @@ button:active {
 * Ajustes responsivos para diferentes tamaños de pantalla
 ===========================================================================*/
 
-/* Pantallas grandes (hasta 1200px) */
-@media only screen and (max-width: 1200px) {
-    h1 {
-        font-size: 3rem;
-    }
-    
-    h2 {
-        font-size: 2.5rem;
-    }
-
-    .letter {
-        width: 45%; /* Ajusta el ancho de las cartas en tablets */
-    }
-    
-    .space-image {
-        width: 90%;
-    }
-}
-
-@media only screen and (max-width: 768px) {
-    h1 {
-        font-size: 2.5rem;
-    }
-    
-    h2 {
-        font-size: 2rem;
-    }
-    
-    p {
-        font-size: 1.2rem;
-    }
-    
-    .letter {
-        width: 90%; /* Las cartas se muestran como bloques completos en pantallas pequeñas */
-    }
-    
-    /*---------------------------------------------------------------------------
-* 8.5 Imágenes y Elementos Decorativos
----------------------------------------------------------------------------*/
-
-/* Imagen de corazón con animación */
-.heart-image {
-        width: 100px; /* Imagen del corazón más pequeña */
-    }
-    
-    button {
-        font-size: 1rem;
-        padding: 10px 20px;
-    }
-
-    .space-image {
-        width: 95%;
-    }
-}
-
-@media only screen and (max-width: 480px) {
-    h1 {
-        font-size: 2rem;
-    }
-    
-    h2 {
-        font-size: 1.8rem;
-    }
-
-    p {
-        font-size: 1rem;
-    }
-    
-    .letter {
-        width: 100%; /* Cartas a pantalla completa en móviles */
-        font-size: 1rem;
-    }
-
-    button {
-        font-size: 0.9rem;
-        padding: 8px 16px;
-    }
-
-    /*---------------------------------------------------------------------------
-* 8.5 Imágenes y Elementos Decorativos
----------------------------------------------------------------------------*/
-
-/* Imagen de corazón con animación */
-.heart-image {
-        width: 80px; /* Imagen del corazón aún más pequeña en móviles */
-    }
-}
+/* Media queries duplicadas eliminadas - ver sección 3. RESPONSIVE DESIGN para configuración completa */
 
 /*===========================================================================
 * 11. MODAL
@@ -1012,26 +1114,17 @@ button:active {
     height: auto; /* Mantener las proporciones de la imagen */
 }
 
-/* Para pantallas medianas */
-@media only screen and (max-width: 768px) {
-    .banner-image {
-        max-width: 90%; /* Ajusta la anchura para pantallas medianas */
-    }
-}
-
-/* Para pantallas pequeñas */
-@media only screen and (max-width: 480px) {
-    .banner-image {
-        max-width: 100%; /* La imagen ocupa todo el ancho de la pantalla */
-    }
-}
+/* Banner responsive - integrado en media queries principales */
 
 /*---------------------------------------------------------------------------
 * 12.2 Carrusel Tipo Libro
 ---------------------------------------------------------------------------*/
 
 /* Contenedor principal del carrusel */
-.book-carousel-section {
+/* ===== CARRUSEL DE LIBRO - NUEVA IMPLEMENTACIÓN ===== */
+
+/* Sección principal del carrusel */
+.carousel-section {
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
@@ -1051,7 +1144,7 @@ button:active {
     transition: all 0.3s ease;
 }
 
-.book-carousel-section::before {
+.carousel-section::before {
     content: '';
     position: absolute;
     top: 0;
@@ -1062,11 +1155,11 @@ button:active {
     transition: left 0.8s;
 }
 
-.book-carousel-section:hover::before {
+.carousel-section:hover::before {
     left: 100%;
 }
 
-.book-carousel-section:hover {
+.carousel-section:hover {
     transform: translateY(-5px);
     box-shadow: 
         0 25px 60px rgba(0, 0, 0, 0.4),
@@ -1074,7 +1167,8 @@ button:active {
         inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
-.book-carousel-section h2 {
+/* Título del carrusel */
+.carousel-title {
     font-size: 2.2rem;
     margin-bottom: 30px;
     color: #fff;
@@ -1084,82 +1178,64 @@ button:active {
     z-index: 1;
 }
 
-/* Estilos para el carrusel */
-.book-carousel {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+/* Contenedor principal del carrusel */
+.carousel-container {
     position: relative;
-    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+/* Wrapper del carrusel */
+.carousel-wrapper {
     width: 100%;
-    height: 350px;
+    max-width: 800px;
+    overflow: hidden;
+    border-radius: 20px;
     background: linear-gradient(135deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.6) 100%);
     backdrop-filter: blur(10px);
-    border-radius: 20px;
     border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
-/* Flechas de navegación */
-.prev-button, .next-button {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 1.8rem;
-    padding: 15px;
-    cursor: pointer;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 10;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
+/* Track del carrusel */
+.carousel-track {
+    display: flex;
+    width: 300%;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: transform;
+}
+
+/* Cada slide del carrusel */
+.carousel-slide {
+    width: 33.333333%;
+    flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    min-height: 350px;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
-.prev-button:hover, .next-button:hover {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.2) 100%);
-    color: white;
-    transform: translateY(-50%) scale(1.1);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-}
-
-.prev-button {
-    left: 15px;
-}
-
-.next-button {
-    right: 15px;
-}
-
-/* Contenedor de las páginas */
-.book-pages {
+/* Contenido del slide */
+.slide-content {
     display: flex;
-    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    width: 300%;
-}
-
-/* Cada página del libro */
-.book-page {
-    min-width: 100%;
-    display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 30px;
-    gap: 30px;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 100%;
+    gap: 20px;
+    height: 100%;
 }
 
-/* Texto en la página */
-.book-text {
-    width: 45%;
+/* Texto del slide */
+.slide-text {
+    flex: 1;
+    max-width: 45%;
     color: #fff;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     line-height: 1.6;
     font-weight: 300;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
@@ -1171,33 +1247,142 @@ button:active {
     box-shadow: 
         0 8px 25px rgba(0, 0, 0, 0.2),
         inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    text-align: left;
 }
 
-/* Imagen en la página */
-.book-image {
-    width: 45%;
+.slide-text p {
+    margin: 0;
+    word-wrap: break-word;
+    hyphens: auto;
+}
+
+/* Imagen del slide */
+.slide-image {
+    flex: 1;
+    max-width: 45%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 15px;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.carousel-photo {
+    width: 100%;
+    height: auto;
+    max-height: 280px;
+    object-fit: cover;
+    border-radius: 15px;
+    transition: transform 0.3s ease;
+}
+
+.carousel-photo:hover {
+    transform: scale(1.05);
+}
+
+/* Botones de navegación */
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.9);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    user-select: none;
+}
+
+.carousel-btn:hover {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.2) 100%);
+    color: white;
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.carousel-btn:active {
+    transform: translateY(-50%) scale(0.95);
+}
+
+.carousel-btn-prev {
+    left: -25px;
+}
+
+.carousel-btn-next {
+    right: -25px;
+}
+
+.btn-icon {
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 1;
+}
+
+/* Indicadores de página */
+.carousel-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
     position: relative;
 }
 
-.book-photo {
-    width: 100%;
-    border-radius: 20px;
-    box-shadow: 
-        0 15px 35px rgba(0, 0, 0, 0.3),
-        0 0 0 1px rgba(255, 255, 255, 0.1),
-        inset 0 1px 0 rgba(255, 255, 255, 0.1);
-    transition: all 0.4s ease;
-    filter: brightness(0.9) contrast(1.1);
+.indicator:hover {
+    border-color: rgba(255, 255, 255, 0.7);
+    transform: scale(1.2);
 }
 
-.book-photo:hover {
-    transform: scale(1.05) rotate(2deg);
-    filter: brightness(1.1) contrast(1.2) saturate(1.1);
-    box-shadow: 
-        0 20px 50px rgba(0, 0, 0, 0.4),
-        0 0 30px rgba(255, 255, 255, 0.2),
-        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+.indicator.active {
+    background: rgba(255, 255, 255, 0.9);
+    border-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
+
+.indicator.active::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1.5);
+        opacity: 0;
+    }
+}
+
+/* Estilos antiguos del carrusel removidos */
 
 
 
@@ -1383,6 +1568,114 @@ button:active {
     width: 100%;
     height: 352px;
     overflow: hidden;
+}
+
+/* Spotify responsive - integrado en media queries principales */
+
+/*===========================================================================
+* 4. OPTIMIZACIONES PARA DISPOSITIVOS TÁCTILES
+* Mejoras específicas para interacción táctil y accesibilidad móvil
+===========================================================================*/
+
+/* Mejoras para elementos interactivos en dispositivos táctiles */
+@media (hover: none) and (pointer: coarse) {
+    /* Botones más grandes para toque */
+    button {
+        min-height: 44px;
+        min-width: 44px;
+        padding: 12px 20px;
+    }
+    
+    /* Eliminar efectos hover en dispositivos táctiles */
+    .audio-player-card:hover,
+    .video-section:hover,
+    .spotify-playlist-section:hover,
+    .carousel-section:hover,
+    .intro-card:hover,
+    .letter:hover {
+        transform: none;
+    }
+    
+    /* Efectos de toque activo */
+    button:active {
+        transform: scale(0.95);
+        transition: transform 0.1s ease;
+    }
+    
+    /* Mejorar área de toque para imágenes */
+    .letter-image {
+        cursor: pointer;
+        -webkit-tap-highlight-color: rgba(255, 255, 255, 0.1);
+    }
+}
+
+/* Optimizaciones para orientación landscape en móviles - estilos antiguos removidos */
+@media only screen and (max-height: 500px) and (orientation: landscape) {
+    /* Estilos antiguos del carrusel removidos */
+    
+    h1 {
+        font-size: 1.8rem;
+        margin-bottom: 10px;
+    }
+    
+    h2 {
+        font-size: 1.4rem;
+        margin-bottom: 10px;
+    }
+    
+    .audio-player-card,
+    .video-section,
+    .spotify-playlist-section {
+        padding: 20px 15px;
+        margin: 15px auto;
+    }
+}
+
+/* Mejoras para accesibilidad y contraste */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .floating-particle {
+        animation: none;
+    }
+    
+    .shimmer {
+        animation: none;
+    }
+}
+
+/* Optimización para pantallas de alta densidad */
+@media only screen and (-webkit-min-device-pixel-ratio: 2),
+       only screen and (min-resolution: 192dpi) {
+    .letter-image,
+    .song-logo {
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+    }
+}
+
+/* Mejoras para modo oscuro del sistema */
+@media (prefers-color-scheme: dark) {
+    /* Los estilos ya están optimizados para modo oscuro */
+    body {
+        color-scheme: dark;
+    }
+}
+
+/* Optimización adicional para landscape en tablets y móviles grandes - estilos antiguos removidos */
+@media only screen and (min-width: 568px) and (max-width: 1024px) and (orientation: landscape) {
+    /* Estilos antiguos del carrusel removidos */
+    
+    /* Botones antiguos del carrusel removidos */
+    
+    h2 {
+        font-size: 1.8rem;
+        margin-bottom: 15px;
+    }
 }
 
 
