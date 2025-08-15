@@ -14,19 +14,25 @@
 /* Configuración base para html y body */
 html, body {
     font-family: 'Poppins', sans-serif;
-    background-color: #000000; /* Fondo negro para toda la página */
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 25%, #16213e 50%, #0f3460 75%, #000000 100%);
+    background-attachment: fixed;
     margin: 0;
     padding: 0;
     width: 100%;
     height: 100%;
-    overflow-x: hidden; /* Para evitar desbordamiento lateral */
+    overflow-x: hidden;
+    scroll-behavior: smooth;
 }
 
 /* Configuración específica del body para manejo de capas */
 body {
-    font-family: 'Poppins', sans-serif; /* Fuente Poppins de Google Fonts */
-    position: relative; /* Asegura que las capas se mantengan por encima */
-    z-index: -2; /* Fondo de la página estará detrás de todo */
+    font-family: 'Poppins', sans-serif;
+    position: relative;
+    z-index: -2;
+    background-image: 
+        radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.1) 0%, transparent 50%);
 }
 
 /* Configuración tipográfica global */
@@ -279,11 +285,59 @@ button, .modal {
     transition: transform 0.3s ease-out;
 }
 
-/* Estilos para el título principal */
+/* Títulos principales */
 h1 {
-    font-family: 'Arial', sans-serif;
-    font-size: 3rem;
-    color: white;
+    font-size: 3.5rem;
+    margin-bottom: 30px;
+    color: #fff;
+    text-align: center;
+    font-weight: 300;
+    letter-spacing: 2px;
+    background: linear-gradient(45deg, #fff, #f0f0f0, #fff);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    animation: fadeIn 2s ease-in-out, shimmer 3s ease-in-out infinite;
+    position: relative;
+}
+
+h1::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+    border-radius: 1px;
+}
+
+h2 {
+    font-size: 2.5rem;
+    margin-bottom: 25px;
+    color: #fff;
+    text-align: center;
+    font-weight: 300;
+    letter-spacing: 1px;
+    background: linear-gradient(45deg, #fff, #e0e0e0, #fff);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    animation: fadeIn 2s ease-in-out, shimmer 4s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
 }
 
 /* Estilos para los párrafos de texto */
@@ -325,16 +379,48 @@ p {
 
 /* Estilo para la tarjeta del reproductor de audio (estilo Spotify) */
 .audio-player-card {
-    background-color: rgba(0, 0, 0, 0.8); /* Fondo oscuro opaco */
-    padding: 15px;
-    border-radius: 15px; /* Bordes redondeados */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Sombra para profundidad */
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 40px;
+    border-radius: 25px;
     width: 100%;
-    max-width: 500px;
+    max-width: 700px;
     margin: 20px auto; /* Centramos la tarjeta */
     color: white;
     display: flex;
     flex-direction: column; /* Organiza las secciones en columnas */
+    position: relative;
+    overflow: hidden;
+    box-shadow: 
+        0 15px 45px rgba(0, 0, 0, 0.3),
+        0 0 0 1px rgba(255, 255, 255, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+.audio-player-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.8s;
+}
+
+.audio-player-card:hover::before {
+    left: 100%;
+}
+
+.audio-player-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 
+        0 25px 60px rgba(0, 0, 0, 0.4),
+        0 0 0 1px rgba(255, 255, 255, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
 /* Sección del título dentro de la tarjeta */
@@ -447,20 +533,56 @@ p {
 ---------------------------------------------------------------------------*/
 
 .intro-card {
-    background-color: rgba(0, 0, 0, 0.6); /* Fondo oscuro y opaco */
-    padding: 20px;
-    border-radius: 10px; /* Bordes redondeados */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Sombra para darle profundidad */
-    margin: 50px auto; /* Centrado y espaciado superior e inferior */
-    max-width: 800px; /* Ancho máximo similar a otras tarjetas */
-    text-align: center; /* Centramos el texto */
-    color: white; /* Texto blanco para buena legibilidad */
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 40px;
+    border-radius: 25px;
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.3),
+        0 0 0 1px rgba(255, 255, 255, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    margin: 50px auto;
+    max-width: 800px;
+    text-align: center;
+    color: white;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.intro-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.5s;
+}
+
+.intro-card:hover::before {
+    left: 100%;
+}
+
+.intro-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 
+        0 15px 45px rgba(0, 0, 0, 0.4),
+        0 0 0 1px rgba(255, 255, 255, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
 .intro {
-    font-size: 1.5rem; /* Tamaño del texto similar a las otras secciones */
-    line-height: 1.8; /* Para hacer el texto más legible */
-    margin: 0; /* Sin márgenes adicionales */
+    font-size: 1.5rem;
+    line-height: 1.8;
+    margin: 0;
+    font-weight: 300;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    position: relative;
+    z-index: 1;
 }
 
 
@@ -472,32 +594,82 @@ p {
 .letters {
     display: flex;
     justify-content: space-evenly;
-    flex-wrap: wrap; /* Asegura que las cartas se adapten en pantallas pequeñas */
+    flex-wrap: wrap;
     margin-top: 50px;
+    gap: 20px;
 }
 
 .letter {
-    background-color: rgba(255, 255, 255, 0.1);
-    padding: 20px;
-    border-radius: 10px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 30px;
+    border-radius: 20px;
     width: 30%;
+    min-width: 280px;
     font-size: 1.2rem;
     animation: slideIn 3s ease-in-out;
-    margin: 10px; /* Espaciado entre cartas */
+    margin: 10px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.3),
+        0 0 0 1px rgba(255, 255, 255, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.letter::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+    transform: translateX(-100%);
+    transition: transform 0.6s;
+}
+
+.letter:hover::before {
+    transform: translateX(100%);
+}
+
+.letter:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.4),
+        0 0 0 1px rgba(255, 255, 255, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
 /* Contenedor de las imágenes de las cartas */
 .letter-image-container {
-    margin-top: 15px; /* Espacio entre el texto y la imagen */
-    text-align: center; /* Centrar las imágenes */
+    margin-top: 20px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
 }
 
 /* Estilo de las imágenes en las cartas */
 .letter-image {
     width: 100%;
-    max-width: 200px; /* Limita el tamaño máximo de la imagen */
-    border-radius: 10px; /* Bordes redondeados */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para darle profundidad */
+    max-width: 200px;
+    border-radius: 15px;
+    box-shadow: 
+        0 8px 25px rgba(0, 0, 0, 0.3),
+        0 0 0 1px rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    filter: brightness(0.9) contrast(1.1);
+}
+
+.letter-image:hover {
+    transform: scale(1.05);
+    filter: brightness(1.1) contrast(1.2) saturate(1.1);
+    box-shadow: 
+        0 12px 35px rgba(0, 0, 0, 0.4),
+        0 0 20px rgba(255, 255, 255, 0.2);
 }
 
 
@@ -522,20 +694,52 @@ p {
 }
 
 button {
-    padding: 15px 30px;
+    padding: 18px 40px;
     font-size: 1.2rem;
+    font-weight: 500;
     margin-top: 40px;
-    background-color: #ff69b4;
+    background: linear-gradient(135deg, #ff6b9d 0%, #ff8a9b 25%, #ffa8b6 50%, #ff69b4 75%, #ff1493 100%);
     border: none;
     color: white;
-    border-radius: 5px;
+    border-radius: 50px;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 
+        0 8px 25px rgba(255, 105, 147, 0.4),
+        0 0 0 1px rgba(255, 255, 255, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s;
+}
+
+button:hover::before {
+    left: 100%;
 }
 
 button:hover {
-    background-color: #ff1493;
-    transform: scale(1.1);
+    background: linear-gradient(135deg, #ff1493 0%, #ff69b4 25%, #ffa8b6 50%, #ff8a9b 75%, #ff6b9d 100%);
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 
+        0 15px 40px rgba(255, 105, 147, 0.6),
+        0 0 0 1px rgba(255, 255, 255, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+button:active {
+    transform: translateY(-1px) scale(1.02);
+    transition: all 0.1s ease;
 }
 
 .space-image {
@@ -828,19 +1032,56 @@ button:hover {
 
 /* Contenedor principal del carrusel */
 .book-carousel-section {
-    background-color: rgba(0, 0, 0, 0.6); /* Fondo opaco simulando recubrimiento de un libro */
-    padding: 40px;
-    border-radius: 15px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 50px;
+    border-radius: 25px;
     margin: 40px auto;
-    max-width: 800px;
+    max-width: 900px;
     text-align: center;
     color: white;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 
+        0 15px 45px rgba(0, 0, 0, 0.3),
+        0 0 0 1px rgba(255, 255, 255, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+.book-carousel-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.8s;
+}
+
+.book-carousel-section:hover::before {
+    left: 100%;
+}
+
+.book-carousel-section:hover {
+    transform: translateY(-5px);
+    box-shadow: 
+        0 25px 60px rgba(0, 0, 0, 0.4),
+        0 0 0 1px rgba(255, 255, 255, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
 .book-carousel-section h2 {
-    font-size: 2rem;
-    margin-bottom: 20px;
+    font-size: 2.2rem;
+    margin-bottom: 30px;
     color: #fff;
+    font-weight: 300;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    position: relative;
+    z-index: 1;
 }
 
 /* Estilos para el carrusel */
@@ -851,65 +1092,111 @@ button:hover {
     position: relative;
     overflow: hidden;
     width: 100%;
-    height: 300px; /* Altura de las páginas */
-    background-color: rgba(0, 0, 0, 0.7); /* Fondo de las páginas */
-    border-radius: 10px;
+    height: 350px;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.6) 100%);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 /* Flechas de navegación */
 .prev-button, .next-button {
-    background-color: rgba(255, 255, 255, 0);
-    border: none;
-    color: rgba(255, 255, 255, 0.312);
-    font-size: 2rem;
-    padding: 10px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.1) 100%);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.8rem;
+    padding: 15px;
     cursor: pointer;
     position: absolute;
-    top: 30%;
+    top: 50%;
     transform: translateY(-50%);
     z-index: 10;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.prev-button:hover, .next-button:hover {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.2) 100%);
+    color: white;
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 }
 
 .prev-button {
-    left: 10px;
+    left: 15px;
 }
 
 .next-button {
-    right: 10px;
+    right: 15px;
 }
 
 /* Contenedor de las páginas */
 .book-pages {
     display: flex;
-    transition: transform 0.5s ease-in-out; /* Animación de paso de página */
-    width: 300%; /* El ancho es 3 veces la pantalla para las 3 páginas */
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    width: 300%;
 }
 
 /* Cada página del libro */
 .book-page {
-    min-width: 100%; /* Cada página ocupa el 100% del contenedor visible */
+    min-width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
+    padding: 30px;
+    gap: 30px;
 }
 
 /* Texto en la página */
 .book-text {
-    width: 45%; /* Texto ocupa el 45% de la página */
+    width: 45%;
     color: #fff;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
+    line-height: 1.6;
+    font-weight: 300;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+    backdrop-filter: blur(10px);
+    padding: 25px;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 
+        0 8px 25px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 /* Imagen en la página */
 .book-image {
-    width: 45%; /* Imagen ocupa el 45% de la página */
+    width: 45%;
+    position: relative;
 }
 
 .book-photo {
     width: 100%;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+    box-shadow: 
+        0 15px 35px rgba(0, 0, 0, 0.3),
+        0 0 0 1px rgba(255, 255, 255, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transition: all 0.4s ease;
+    filter: brightness(0.9) contrast(1.1);
+}
+
+.book-photo:hover {
+    transform: scale(1.05) rotate(2deg);
+    filter: brightness(1.1) contrast(1.2) saturate(1.1);
+    box-shadow: 
+        0 20px 50px rgba(0, 0, 0, 0.4),
+        0 0 30px rgba(255, 255, 255, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 
@@ -920,29 +1207,70 @@ button:hover {
 
 /* Contenedor principal de la sección de video */
 .video-section {
-    background-color: rgba(0, 0, 0, 0.6); /* Fondo oscuro opaco */
-    padding: 40px;
-    border-radius: 15px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 50px;
+    border-radius: 25px;
     margin: 40px auto;
-    max-width: 800px;
+    max-width: 900px;
     text-align: center;
     color: white;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 
+        0 15px 45px rgba(0, 0, 0, 0.3),
+        0 0 0 1px rgba(255, 255, 255, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+.video-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.8s;
+}
+
+.video-section:hover::before {
+    left: 100%;
+}
+
+.video-section:hover {
+    transform: translateY(-5px);
+    box-shadow: 
+        0 25px 60px rgba(0, 0, 0, 0.4),
+        0 0 0 1px rgba(255, 255, 255, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
 /* Estilo del título en la sección del video */
 .video-section h2 {
-    font-size: 2rem;
-    margin-bottom: 20px;
+    font-size: 2.2rem;
+    margin-bottom: 30px;
     color: #fff;
+    font-weight: 300;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    position: relative;
+    z-index: 1;
 }
 
 /* Contenedor del video */
 .video-container {
     position: relative;
-    background-color: rgba(0, 0, 0, 0.8); /* Fondo oscuro para el marco del video */
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Sombra para dar profundidad */
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.6) 100%);
+    backdrop-filter: blur(10px);
+    padding: 30px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 
+        0 10px 30px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -985,31 +1313,75 @@ button:hover {
 
 /* Contenedor principal de la sección de Spotify */
 .spotify-playlist-section {
-    background-color: rgba(0, 0, 0, 0.6); /* Fondo oscuro opaco */
-    padding: 40px;
-    border-radius: 15px;
+    background: linear-gradient(135deg, rgba(30, 215, 96, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(30, 215, 96, 0.2);
+    padding: 50px;
+    border-radius: 25px;
     margin: 40px auto;
-    max-width: 800px;
+    max-width: 900px;
     text-align: center;
     color: white;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 
+        0 15px 45px rgba(0, 0, 0, 0.3),
+        0 0 0 1px rgba(30, 215, 96, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+}
+
+.spotify-playlist-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(30, 215, 96, 0.1), transparent);
+    transition: left 0.8s;
+}
+
+.spotify-playlist-section:hover::before {
+    left: 100%;
+}
+
+.spotify-playlist-section:hover {
+    transform: translateY(-5px);
+    box-shadow: 
+        0 25px 60px rgba(0, 0, 0, 0.4),
+        0 0 0 1px rgba(30, 215, 96, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
 /* Título de la sección de Spotify */
 .spotify-playlist-section h2 {
-    font-size: 2rem;
-    margin-bottom: 20px;
+    font-size: 2.2rem;
+    margin-bottom: 30px;
     color: #fff;
+    font-weight: 300;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    position: relative;
+    z-index: 1;
 }
 
 /* Contenedor del iframe de Spotify */
 .spotify-embed-container {
+    position: relative;
+    background: linear-gradient(135deg, rgba(30, 215, 96, 0.1) 0%, rgba(0, 0, 0, 0.4) 100%);
+    backdrop-filter: blur(10px);
+    padding: 30px;
+    border-radius: 20px;
+    border: 1px solid rgba(30, 215, 96, 0.1);
+    box-shadow: 
+        0 10px 30px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
     height: 352px;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Sombra para darle profundidad */
     overflow: hidden;
 }
 
